@@ -1,3 +1,47 @@
+export interface NavLink {
+  label: string;
+  href: string;
+}
+
+export interface Feature {
+  icon: string;
+  title: string;
+  description: string;
+  gradient: string;
+  accent: string;
+}
+
+export interface ProductCard {
+  id: string;
+  title: string;
+  description: string;
+  features: string[];
+  icon: string;
+  gradient: string;
+  accent: string;
+  href: string;
+}
+
+export interface Testimonial {
+  quote: string;
+  author: string;
+  role: string;
+  avatar: string;
+}
+
+export interface Statistic {
+  value: string;
+  label: string;
+  prefix?: string;
+  suffix?: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+  category: string;
+}
+
 export interface BlogPost {
   title: string;
   slug: string;
@@ -71,21 +115,10 @@ export interface StatusMetric {
   status: "success" | "warning" | "neutral";
 }
 
-export interface FAQItem {
-  question: string;
-  answer: string;
-  category: string;
-}
-
 export interface TeamMember {
   name: string;
   role: string;
   description: string;
-}
-
-export interface NavLink {
-  label: string;
-  href: string;
 }
 
 export type WaitlistStatus = "PENDING" | "INVITED" | "APPROVED" | "REJECTED";

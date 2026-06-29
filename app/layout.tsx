@@ -1,42 +1,48 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
 export const metadata: Metadata = {
   metadataBase: siteConfig.metadataBase,
   title: {
-    default: `${siteConfig.name} - ${siteConfig.tagline}`,
+    default: `${siteConfig.name} — ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
     "SP NET GRAM",
-    "Telegram client",
-    "Telegram",
-    "premium Telegram",
+    "SPNETGRAM",
     "messaging",
-    "communication",
-    "organization tools",
-    "SP NET GRAM coins",
-    "SP NET GRAM gems",
-    "third-party Telegram",
+    "privacy",
+    "AI messenger",
+    "premium messaging",
+    "communication platform",
+    "secure messaging",
+    "SP NET INC",
   ],
-  authors: [{ name: "Savan Patel" }],
-  creator: "Savan Patel",
+  authors: [{ name: "SP NET INC" }],
+  creator: "SP NET INC",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: `${siteConfig.name} - ${siteConfig.tagline}`,
+    title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} - ${siteConfig.tagline}`,
+    title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
     creator: "@spnetgram",
@@ -53,8 +59,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="min-h-screen bg-background text-foreground antialiased">
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`${inter.variable} min-h-screen bg-background text-foreground antialiased font-sans`}>
         <Navbar />
         <main className="flex min-h-screen flex-col">{children}</main>
         <Footer />

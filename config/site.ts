@@ -2,9 +2,10 @@ import type { NavLink } from "@/types";
 
 export const siteConfig = {
   name: "SP NET GRAM",
-  tagline: "Built on Telegram. Enhanced by SP NET GRAM.",
+  shortName: "SPNETGRAM",
+  tagline: "Build. Connect. Empower.",
   description:
-    "SP NET GRAM is an independent third-party Telegram client offering enhanced experiences, premium services, organizations, and ecosystem features built on Telegram's infrastructure.",
+    "SP NET GRAM is a next-generation communication platform focused on speed, privacy, AI, productivity, and premium experience for communities, creators, and businesses.",
   url: "https://spnetgram.com",
   ogImage: "/images/og.jpg",
   metadataBase: new URL("https://spnetgram.com"),
@@ -15,58 +16,65 @@ export const siteConfig = {
 };
 
 export const navLinks: NavLink[] = [
-  { label: "Home", href: "/" },
-  { label: "Platform", href: "/platform" },
-  { label: "Waitlist", href: "/waitlist" },
-  { label: "Beta", href: "/beta" },
-  { label: "Development", href: "/development" },
-  { label: "Roadmap", href: "/roadmap" },
-  { label: "Newsroom", href: "/newsroom" },
-  { label: "Blog", href: "/blog" },
-  { label: "Docs", href: "/docs" },
-  { label: "Changelog", href: "/changelog" },
-  { label: "Careers", href: "/careers" },
-  { label: "Support", href: "/support" },
+  { label: "Products", href: "#products" },
+  { label: "Technology", href: "#technology" },
+  { label: "AI", href: "#ai" },
+  { label: "Community", href: "#community" },
+  { label: "Enterprise", href: "#enterprise" },
+  { label: "Developers", href: "/docs" },
   { label: "Company", href: "/company" },
-  { label: "Status", href: "/status" },
+  { label: "Newsroom", href: "/newsroom" },
 ];
 
 export const footerSections = [
   {
+    title: "Products",
+    links: [
+      { label: "SP NET GRAM", href: "#products" },
+      { label: "SP NET ADMIN", href: "#products" },
+      { label: "SP NET AI", href: "#ai" },
+      { label: "SP NET CLOUD", href: "#products" },
+      { label: "SP NET API", href: "/docs" },
+    ],
+  },
+  {
     title: "Platform",
     links: [
-      { label: "SP NET GRAM", href: "/" },
-      { label: "Coins", href: "/platform" },
-      { label: "Gems", href: "/platform" },
-      { label: "Premium", href: "/platform" },
-      { label: "Organizations", href: "/platform" },
+      { label: "Messaging", href: "#features" },
+      { label: "Voice & Video", href: "#features" },
+      { label: "Channels & Groups", href: "#community" },
+      { label: "Stories", href: "#features" },
+      { label: "Cloud Storage", href: "#features" },
     ],
   },
   {
-    title: "Technology",
+    title: "Developers",
     links: [
-      { label: "Development", href: "/development" },
-      { label: "Roadmap", href: "/roadmap" },
-      { label: "Status", href: "/status" },
-      { label: "Infrastructure", href: "/status" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { label: "Waitlist", href: "/waitlist" },
-      { label: "Newsroom", href: "/newsroom" },
-      { label: "Blog", href: "/blog" },
       { label: "Documentation", href: "/docs" },
-      { label: "Support", href: "/support" },
+      { label: "API Reference", href: "/docs" },
+      { label: "Bots Platform", href: "/docs" },
+      { label: "SDKs & Tools", href: "/docs" },
+      { label: "Changelog", href: "/changelog" },
     ],
   },
   {
     title: "Company",
     links: [
       { label: "About", href: "/company" },
+      { label: "Blog", href: "/blog" },
+      { label: "Newsroom", href: "/newsroom" },
       { label: "Careers", href: "/careers" },
       { label: "Contact", href: "/support" },
+    ],
+  },
+  {
+    title: "Support",
+    links: [
+      { label: "Help Center", href: "/support" },
+      { label: "FAQ", href: "/support" },
+      { label: "Status", href: "/status" },
+      { label: "Beta", href: "/beta" },
+      { label: "Roadmap", href: "/roadmap" },
     ],
   },
   {
@@ -76,15 +84,6 @@ export const footerSections = [
       { label: "Terms of Service", href: "/terms" },
       { label: "Cookie Policy", href: "/cookies" },
       { label: "Disclaimer", href: "/disclaimer" },
-    ],
-  },
-  {
-    title: "Ecosystem",
-    links: [
-      { label: "Website", href: "/" },
-      { label: "App", href: "/platform" },
-      { label: "Admin Panel", href: "/platform" },
-      { label: "Future Services", href: "/roadmap" },
     ],
   },
 ];

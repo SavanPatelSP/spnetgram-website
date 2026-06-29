@@ -9,7 +9,7 @@ export function Card({ className, children }: CardProps) {
   return (
     <div
       className={cn(
-        "rounded-xl border border-border bg-card transition-all duration-200",
+        "rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300",
         className,
       )}
     >
@@ -19,12 +19,12 @@ export function Card({ className, children }: CardProps) {
 }
 
 export function CardHeader({ className, children }: CardProps) {
-  return <div className={cn("mb-4", className)}>{children}</div>;
+  return <div className={cn("mb-5", className)}>{children}</div>;
 }
 
 export function CardTitle({ className, children }: CardProps) {
   return (
-    <h3 className={cn("text-lg font-semibold leading-none tracking-tight", className)}>
+    <h3 className={cn("text-xl font-semibold tracking-tight", className)}>
       {children}
     </h3>
   );
