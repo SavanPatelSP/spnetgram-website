@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { Hero } from "@/components/hero";
 import { TrustedBy } from "@/components/trusted-by";
 import { ProductCards } from "@/components/product-cards";
@@ -14,7 +16,12 @@ import { RoadmapSection } from "@/components/roadmap-section";
 import { FAQSection } from "@/components/faq-section";
 import { DownloadSection } from "@/components/download-section";
 import { ScreenshotShowcase } from "@/components/screenshot-showcase";
-import { ScrollReveal } from "@/components/scroll-reveal";
+
+export const metadata: Metadata = {
+  title: "SP NET GRAM — The Future of Messaging",
+  description:
+    "Experience the next generation of messaging with SP NET GRAM. AI-powered, privacy-first, and beautifully designed.",
+};
 
 export default function HomePage() {
   return (

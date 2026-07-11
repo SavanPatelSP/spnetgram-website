@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { siteConfig } from "@/config/site";
+import { AppProvider } from "@/providers/app-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import "./globals.css";
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [
     "SP NET GRAM",
-    "SPNETGRAM",
+    "SP NET GRAM",
     "messaging",
     "privacy",
     "AI messenger",
@@ -61,9 +62,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${inter.variable} min-h-screen bg-background text-foreground antialiased font-sans`}>
-        <Navbar />
-        <main className="flex min-h-screen flex-col">{children}</main>
-        <Footer />
+        <AppProvider>
+          <Navbar />
+          <main className="flex min-h-screen flex-col">{children}</main>
+          <Footer />
+        </AppProvider>
       </body>
     </html>
   );

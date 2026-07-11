@@ -11,7 +11,7 @@ const platforms = [
 
 export function CrossPlatformSection() {
   return (
-    <section className="border-t border-border/30 py-28 sm:py-36">
+    <section className="border-t border-white/[0.04] py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="mx-auto max-w-3xl text-center mb-16">
@@ -35,7 +35,7 @@ export function CrossPlatformSection() {
             const Icon = platform.icon;
             return (
               <ScrollReveal key={platform.name} delay={i * 80}>
-                <div className="group flex flex-col items-center rounded-2xl border border-border/20 bg-card/30 p-8 text-center transition-all duration-300 card-depth">
+                <div className="group flex flex-col items-center rounded-2xl border border-white/[0.06] bg-white/[0.03] p-8 text-center transition-all duration-300 card-depth">
                   <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500/15 to-indigo-500/10 text-blue-400 group-hover:scale-110 transition-transform duration-300">
                     <Icon className="h-8 w-8" />
                   </div>

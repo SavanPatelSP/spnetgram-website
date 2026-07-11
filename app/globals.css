@@ -2,6 +2,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  --font-sans: var(--font-inter);
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
@@ -163,6 +164,29 @@ body {
 }
 .animate-float-slow {
   animation: float 7s ease-in-out infinite 2s;
+}
+
+/* Float with gentle rotation for badges */
+@keyframes float-drift-1 {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50% { transform: translateY(-14px) rotate(1deg); }
+}
+@keyframes float-drift-2 {
+  0%, 100% { transform: translateY(0px) rotate(1.5deg); }
+  50% { transform: translateY(-12px) rotate(-1deg); }
+}
+@keyframes float-drift-3 {
+  0%, 100% { transform: translateY(0px) rotate(-0.5deg); }
+  50% { transform: translateY(-16px) rotate(1.5deg); }
+}
+.animate-float-drift-1 {
+  animation: float-drift-1 5s ease-in-out infinite;
+}
+.animate-float-drift-2 {
+  animation: float-drift-2 6s ease-in-out infinite;
+}
+.animate-float-drift-3 {
+  animation: float-drift-3 7s ease-in-out infinite;
 }
 
 @keyframes pulse-glow {
@@ -449,4 +473,21 @@ body {
 }
 .animate-marquee-reverse {
   animation: marquee 40s linear infinite reverse;
+}
+
+/* ── Toast notifications ── */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-slide-up {
+  animation: slide-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes shrink {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+.animate-shrink {
+  animation: shrink linear forwards;
 }

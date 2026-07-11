@@ -20,7 +20,7 @@ export function BusinessCreatorSection() {
   return (
     <>
       {/* Business */}
-      <section id="enterprise" className="border-t border-border/30 py-28 sm:py-36">
+      <section id="enterprise" className="border-t border-white/[0.04] py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="mx-auto max-w-3xl text-center mb-16">
@@ -44,7 +44,7 @@ export function BusinessCreatorSection() {
               const Icon = item.icon;
               return (
                 <ScrollReveal key={item.title} delay={i * 80}>
-                  <div className="group flex items-start gap-4 rounded-2xl border border-border/20 bg-card/30 p-6 transition-all duration-300 card-depth">
+                  <div className="group flex items-start gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-all duration-300 card-depth">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/15 to-teal-500/10 text-emerald-400 group-hover:scale-105 transition-transform duration-300">
                       <Icon className="h-6 w-6" />
                     </div>
@@ -61,7 +61,7 @@ export function BusinessCreatorSection() {
       </section>
 
       {/* Creator */}
-      <section className="border-t border-border/30 py-28 sm:py-36">
+      <section className="border-t border-white/[0.04] py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="mx-auto max-w-3xl text-center mb-16">
@@ -85,7 +85,7 @@ export function BusinessCreatorSection() {
               const Icon = item.icon;
               return (
                 <ScrollReveal key={item.title} delay={i * 80}>
-                  <div className="group flex items-start gap-4 rounded-2xl border border-border/20 bg-card/30 p-6 transition-all duration-300 card-depth">
+                  <div className="group flex items-start gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-all duration-300 card-depth">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500/15 to-orange-500/10 text-amber-400 group-hover:scale-105 transition-transform duration-300">
                       <Icon className="h-6 w-6" />
                     </div>

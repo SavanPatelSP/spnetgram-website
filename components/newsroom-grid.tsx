@@ -2,10 +2,10 @@ import Link from "next/link";
 import { Calendar, ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { NewsroomArticle } from "@/types";
+import type { Article } from "@/types/api";
 
 interface NewsroomGridProps {
-  articles: NewsroomArticle[];
+  articles: Article[];
 }
 
 export function NewsroomGrid({ articles }: NewsroomGridProps) {
@@ -27,7 +27,7 @@ export function NewsroomGrid({ articles }: NewsroomGridProps) {
               <div className="mt-4 flex items-center justify-between">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground/70">
                   <Calendar className="h-3.5 w-3.5" />
-                  {new Date(article.date).toLocaleDateString("en-US", {
+                  {new Date(article.publishedAt!).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",

@@ -5,7 +5,15 @@ import { CheckCircle, Loader2, ArrowRight, Home, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import type { WaitlistFormData } from "@/types";
+import { useSubmitWaitlist } from "@/hooks/use-waitlist";
+import type { WaitlistSubmission } from "@/types/api";
+
+interface WaitlistFormData {
+  fullName: string;
+  email: string;
+  telegramUsername: string;
+  agreedToUpdates: boolean;
+}
 
 type FormErrors = Partial<Record<keyof WaitlistFormData, string>>;
 type SubmitState = "idle" | "loading" | "success" | "error";
@@ -13,16 +21,10 @@ type SubmitState = "idle" | "loading" | "success" | "error";
 function validateForm(data: WaitlistFormData): FormErrors {
   const errors: FormErrors = {};
 
-  if (!data.firstName.trim()) {
-    errors.firstName = "First name is required";
-  } else if (data.firstName.trim().length < 2) {
-    errors.firstName = "First name must be at least 2 characters";
-  }
-
-  if (!data.lastName.trim()) {
-    errors.lastName = "Last name is required";
-  } else if (data.lastName.trim().length < 2) {
-    errors.lastName = "Last name must be at least 2 characters";
+  if (!data.fullName.trim()) {
+    errors.fullName = "Full name is required";
+  } else if (data.fullName.trim().length < 2) {
+    errors.fullName = "Full name must be at least 2 characters";
   }
 
   if (!data.email.trim()) {
@@ -45,8 +47,7 @@ function validateForm(data: WaitlistFormData): FormErrors {
 
 export function WaitlistForm() {
   const [formData, setFormData] = React.useState<WaitlistFormData>({
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
     telegramUsername: "",
     agreedToUpdates: false,
@@ -56,6 +57,7 @@ export function WaitlistForm() {
     Partial<Record<keyof WaitlistFormData, boolean>>
   >({});
   const [submitState, setSubmitState] = React.useState<SubmitState>("idle");
+  const submitMutation = useSubmitWaitlist();
 
   const updateField = (
     field: keyof WaitlistFormData,
@@ -80,8 +82,7 @@ export function WaitlistForm() {
     const newErrors = validateForm(formData);
     setErrors(newErrors);
     setTouched({
-      firstName: true,
-      lastName: true,
+      fullName: true,
       email: true,
       telegramUsername: true,
       agreedToUpdates: true,
@@ -92,7 +93,11 @@ export function WaitlistForm() {
     setSubmitState("loading");
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const payload: WaitlistSubmission = {
+        fullName: formData.fullName.trim(),
+        email: formData.email.trim(),
+      };
+      await submitMutation.mutateAsync(payload);
       setSubmitState("success");
     } catch {
       setSubmitState("error");
@@ -132,73 +137,38 @@ export function WaitlistForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div>
-          <label
-            htmlFor="firstName"
-            className="mb-2 block text-sm font-medium"
-          >
-            First Name <span className="text-red-400">*</span>
-          </label>
-          <input
-            id="firstName"
-            type="text"
-            value={formData.firstName}
-            onChange={(e) => updateField("firstName", e.target.value)}
-            onBlur={() => handleBlur("firstName")}
-            className={cn(
-              "block w-full rounded-lg border bg-background px-4 py-2.5 text-sm transition-all duration-200 placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring",
-              errors.firstName && touched.firstName
-                ? "border-red-500/50"
-                : "border-border/50",
-            )}
-            placeholder="John"
-            aria-invalid={!!(errors.firstName && touched.firstName)}
-            aria-describedby={
-              errors.firstName && touched.firstName
-                ? "firstName-error"
-                : undefined
-            }
-          />
-          {errors.firstName && touched.firstName && (
-            <p id="firstName-error" className="mt-1.5 text-xs text-red-400">
-              {errors.firstName}
-            </p>
+      <div>
+        <label
+          htmlFor="fullName"
+          className="mb-2 block text-sm font-medium"
+        >
+          Full Name <span className="text-red-400">*</span>
+        </label>
+        <input
+          id="fullName"
+          type="text"
+          value={formData.fullName}
+          onChange={(e) => updateField("fullName", e.target.value)}
+          onBlur={() => handleBlur("fullName")}
+          className={cn(
+            "block w-full rounded-lg border bg-background px-4 py-2.5 text-sm transition-all duration-200 placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring",
+            errors.fullName && touched.fullName
+              ? "border-red-500/50"
+              : "border-border/50",
           )}
-        </div>
-        <div>
-          <label
-            htmlFor="lastName"
-            className="mb-2 block text-sm font-medium"
-          >
-            Last Name <span className="text-red-400">*</span>
-          </label>
-          <input
-            id="lastName"
-            type="text"
-            value={formData.lastName}
-            onChange={(e) => updateField("lastName", e.target.value)}
-            onBlur={() => handleBlur("lastName")}
-            className={cn(
-              "block w-full rounded-lg border bg-background px-4 py-2.5 text-sm transition-all duration-200 placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring",
-              errors.lastName && touched.lastName
-                ? "border-red-500/50"
-                : "border-border/50",
-            )}
-            placeholder="Doe"
-            aria-invalid={!!(errors.lastName && touched.lastName)}
-            aria-describedby={
-              errors.lastName && touched.lastName
-                ? "lastName-error"
-                : undefined
-            }
-          />
-          {errors.lastName && touched.lastName && (
-            <p id="lastName-error" className="mt-1.5 text-xs text-red-400">
-              {errors.lastName}
-            </p>
-          )}
-        </div>
+          placeholder="John Doe"
+          aria-invalid={!!(errors.fullName && touched.fullName)}
+          aria-describedby={
+            errors.fullName && touched.fullName
+              ? "fullName-error"
+              : undefined
+          }
+        />
+        {errors.fullName && touched.fullName && (
+          <p id="fullName-error" className="mt-1.5 text-xs text-red-400">
+            {errors.fullName}
+          </p>
+        )}
       </div>
 
       <div>

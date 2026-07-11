@@ -47,7 +47,7 @@ function ChatScreen() {
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-sm font-semibold text-white tracking-tight">SPNETGRAM Beta</span>
+                  <span className="text-sm font-semibold text-white tracking-tight">SP NET GRAM Beta</span>
                   <Sparkles className="h-3 w-3 text-amber-400" />
                 </div>
                 <span className="text-[8px] text-white/60">2,431 members, 128 online</span>
@@ -360,7 +360,7 @@ export function ScreenshotShowcase() {
   const prev = () => goTo((activeIndex - 1 + screens.length) % screens.length);
 
   return (
-    <section className="border-t border-border/50 bg-accent/[0.02] py-28">
+    <section className="border-t border-white/[0.04] bg-accent/[0.02] py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center mb-16">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/[0.08] px-3 py-1 text-xs font-medium backdrop-blur-sm">
@@ -368,7 +368,7 @@ export function ScreenshotShowcase() {
             <span className="text-blue-300 font-medium">Preview</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
-            See SPNETGRAM in action
+            See SP NET GRAM in action
           </h2>
           <p className="mt-5 text-base sm:text-lg text-muted-foreground/70 leading-relaxed max-w-2xl mx-auto">
             A premium Telegram client experience. Familiar where it counts, enhanced where it matters.

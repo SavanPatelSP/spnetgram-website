@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Mail, MessageSquare, Book, HelpCircle } from "lucide-react";
 import { FAQSection } from "@/components/faq-section";
 import { Card } from "@/components/ui/card";
-import { getFAQItems } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Support",
@@ -38,8 +37,6 @@ const helpCategories = [
 ];
 
 export default function SupportPage() {
-  const faqItems = getFAQItems();
-
   return (
     <>
       <section className="pt-36 pb-24">
@@ -113,7 +110,7 @@ export default function SupportPage() {
         </div>
       </section>
 
-      <FAQSection items={faqItems} />
+      <FAQSection />
     </>
   );
 }

@@ -2,7 +2,7 @@ import type { NavLink } from "@/types";
 
 export const siteConfig = {
   name: "SP NET GRAM",
-  shortName: "SPNETGRAM",
+  shortName: "SP NET GRAM",
   tagline: "Build. Connect. Empower.",
   description:
     "SP NET GRAM is a next-generation communication platform focused on speed, privacy, AI, productivity, and premium experience for communities, creators, and businesses.",
@@ -61,7 +61,6 @@ export const footerSections = [
     title: "Company",
     links: [
       { label: "About", href: "/company" },
-      { label: "Blog", href: "/blog" },
       { label: "Newsroom", href: "/newsroom" },
       { label: "Careers", href: "/careers" },
       { label: "Contact", href: "/support" },

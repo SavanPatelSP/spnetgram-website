@@ -32,17 +32,15 @@ export function ScrollReveal({ children, className, delay = 0, threshold = 0.08 
     return () => observer.disconnect();
   }, [delay, threshold]);
 
+  const transitionStyle: React.CSSProperties = {
+    transition: "all 900ms cubic-bezier(0.16, 1, 0.3, 1)",
+    transform: isVisible ? "translateY(0)" : "translateY(32px)",
+    opacity: isVisible ? 1 : 0,
+    filter: isVisible ? "blur(0px)" : "blur(2px)",
+  };
+
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "transition-all duration-900 cubic-bezier(0.16, 1, 0.3, 1)",
-        isVisible
-          ? "translate-y-0 opacity-100 blur-0"
-          : "translate-y-8 opacity-0 blur-[2px]",
-        className
-      )}
-    >
+    <div ref={ref} className={className} style={transitionStyle}>
       {children}
     </div>
   );

@@ -1,4 +1,3 @@
-import { CheckCircle, AlertTriangle, Minus } from "lucide-react";
 import { ProgressCard } from "@/components/progress-card";
 import type { StatusMetric } from "@/types";
 import { cn } from "@/lib/utils";

@@ -29,7 +29,7 @@ const aiFeatures = [
 
 export function AISection() {
   return (
-    <section id="ai" className="relative border-t border-border/30 py-28 sm:py-36 overflow-hidden">
+    <section id="ai" className="relative border-t border-white/[0.04] py-24 sm:py-32 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-purple-500/[0.02] via-transparent to-blue-500/[0.02]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-r from-purple-500/[0.03] to-blue-500/[0.03] blur-3xl" />
@@ -56,7 +56,7 @@ export function AISection() {
         <div className="grid gap-6 lg:grid-cols-2">
           {/* AI visualization */}
           <ScrollReveal delay={100}>
-            <div className="relative rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/[0.04] to-blue-500/[0.02] p-8 sm:p-10 overflow-hidden min-h-[400px] flex items-center">
+            <div className="relative rounded-2xl border border-purple-500/15 bg-gradient-to-br from-purple-500/[0.04] to-blue-500/[0.02] p-8 sm:p-10 overflow-hidden min-h-[400px] flex items-center">
               {/* Animated gradient orbs */}
               <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-purple-500/10 blur-3xl animate-breathe" />
               <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-blue-500/10 blur-3xl animate-breathe" style={{ animationDelay: "-2s" }} />
@@ -104,7 +104,7 @@ export function AISection() {
                 return (
                   <div
                     key={feature.title}
-                    className="group flex items-start gap-4 rounded-2xl border border-border/20 bg-card/30 p-5 transition-all duration-300 card-depth"
+                    className="group flex items-start gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 card-depth"
                   >
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/15 to-blue-500/10 text-purple-400 group-hover:scale-105 transition-transform duration-300">
                       <Icon className="h-6 w-6" />

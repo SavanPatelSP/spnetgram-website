@@ -1,5 +1,14 @@
+/* ═══════════════════════════════════════════════════════════════
+   ⚠ DEPRECATED — PHASE H
+   This file is deprecated. All data is now served by SP NET Platform.
+   Every dynamic section consumes Platform endpoints via lib/api/*.ts.
+   The route handlers in app/api/public/* that import from this file
+   are OBSOLETE — they are bypassed by the Next.js rewrite in next.config.ts
+   which proxies all /api/public/* requests directly to the Platform.
+   Keep this file for reference only. Remove in Phase I.
+   ═══════════════════════════════════════════════════════════════ */
+
 import type {
-  BlogPost,
   NewsroomArticle,
   RoadmapItem,
   RoadmapPhase,
@@ -9,51 +18,17 @@ import type {
   StatusMetric,
   PlatformFeature,
 } from "@/types";
-
-export function getBlogPosts(): BlogPost[] {
-  return [
-    {
-      title: "Introducing SP NET GRAM: A New Way to Experience Telegram",
-      slug: "introducing-spnetgram",
-      excerpt:
-        "SP NET GRAM reimagines the Telegram experience with enhanced features, premium services, and powerful organization tools for communities and enterprises.",
-      author: "Savan Patel",
-      date: "2026-06-15",
-      category: "Announcements",
-      readTime: "5 min read",
-    },
-    {
-      title: "Understanding SP NET GRAM Coins & Gems",
-      slug: "coins-and-gems",
-      excerpt:
-        "A deep dive into SP NET GRAM digital economy — how Coins and Gems power premium features, memberships, and ecosystem services.",
-      author: "Savan Patel",
-      date: "2026-06-10",
-      category: "Product Updates",
-      readTime: "7 min read",
-    },
-    {
-      title: "Building the SP NET GRAM Administrative Platform",
-      slug: "admin-platform",
-      excerpt:
-        "How we are building a comprehensive administrative infrastructure for organizations, moderation, and support systems.",
-      author: "Savan Patel",
-      date: "2026-06-05",
-      category: "Development Updates",
-      readTime: "8 min read",
-    },
-    {
-      title: "The Future of Telegram Clients: SP NET GRAM Vision",
-      slug: "future-of-telegram-clients",
-      excerpt:
-        "From enhanced messaging to premium memberships and ecosystem expansion, here is what we are building on top of Telegram.",
-      author: "Savan Patel",
-      date: "2026-05-28",
-      category: "Announcements",
-      readTime: "6 min read",
-    },
-  ];
-}
+import type {
+  PricingCategory,
+  PricingPlan,
+  TeamMember,
+  DownloadInfo,
+  Announcement,
+  SiteConfig,
+  Article,
+  FAQItem as ApiFAQItem,
+  RoadmapItem as ApiRoadmapItem,
+} from "@/types/api";
 
 export function getNewsroomArticles(): NewsroomArticle[] {
   return [
@@ -597,6 +572,502 @@ export function getPlatformFeatures(): PlatformFeature[] {
         "API for custom integrations, automation, and platform extension.",
       icon: "Code",
       status: "coming-soon",
+    },
+  ];
+}
+
+/* ─── API-compatible adapters ─── */
+
+export function getApiFAQItems(): ApiFAQItem[] {
+  return getFAQItems().map((item, index) => ({
+    id: `faq-${index + 1}`,
+    question: item.question,
+    answer: item.answer,
+    category: item.category,
+    displayOrder: index,
+    active: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }));
+}
+
+export function getApiRoadmapItems(): ApiRoadmapItem[] {
+  const statusMap: Record<string, string> = {
+    completed: "completed",
+    "in-progress": "in_progress",
+    planned: "planned",
+  };
+
+  return getRoadmapItems().map((item, index) => ({
+    id: `roadmap-${index + 1}`,
+    title: item.title,
+    description: item.description,
+    status: statusMap[item.status] ?? "planned",
+    progress: item.status === "completed" ? 100 : item.status === "in-progress" ? 50 : 0,
+    release: item.quarter,
+    displayOrder: index,
+    active: true,
+    category: item.category,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }));
+}
+
+export function getApiArticles(): Article[] {
+  return getNewsroomArticles().map((article, index) => ({
+    id: `article-${index + 1}`,
+    title: article.title,
+    slug: article.slug,
+    content: article.excerpt,
+    excerpt: article.excerpt,
+    category: article.category,
+    author: article.author,
+    featuredImage: null,
+    featured: index === 0,
+    publishedAt: new Date(article.date).toISOString(),
+    status: "published",
+    createdAt: new Date(article.date).toISOString(),
+    updatedAt: new Date(article.date).toISOString(),
+  }));
+}
+
+export function getTeamMembers(): TeamMember[] {
+  return [
+    {
+      id: "team-1",
+      name: "Savan Patel",
+      role: "Founder & Lead Developer",
+      bio: "Savan Patel founded SP NET INC with a vision to build technology that empowers people. He leads product strategy, architecture, and engineering for the SP NET GRAM ecosystem.",
+      avatarUrl: null,
+      socialLinks: JSON.stringify([
+        { platform: "linkedin", url: "https://linkedin.com/in/savanpatel" },
+        { platform: "github", url: "https://github.com/savanpatel" },
+        { platform: "email", url: "mailto:savan@spnetgram.com" },
+      ]),
+      displayOrder: 1,
+      active: true,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    },
+  ];
+}
+
+export function getDownloadInfo(): DownloadInfo[] {
+  const version = "0.2.0";
+  const publishedAt = "2026-06-12T00:00:00.000Z";
+  return [
+    {
+      id: "download-stable",
+      platform: "stable",
+      version,
+      url: "",
+      releaseNotes: `SP NET GRAM v${version} — Organization and Coins system`,
+      changelog: null,
+      publishedAt,
+      active: true,
+      createdAt: publishedAt,
+      updatedAt: publishedAt,
+    },
+    {
+      id: "download-beta",
+      platform: "beta",
+      version: `${version}-beta`,
+      url: "",
+      releaseNotes: "Beta channel with early access features",
+      changelog: null,
+      publishedAt,
+      active: true,
+      createdAt: publishedAt,
+      updatedAt: publishedAt,
+    },
+    {
+      id: "download-apk",
+      platform: "apk",
+      version,
+      url: "",
+      releaseNotes: "Android APK distribution",
+      changelog: null,
+      publishedAt,
+      active: true,
+      createdAt: publishedAt,
+      updatedAt: publishedAt,
+    },
+  ];
+}
+
+export function getAnnouncements(): Announcement[] {
+  return [];
+}
+
+export function getSiteConfiguration(): SiteConfig {
+  return {
+    appName: "SP NET GRAM",
+    tagline: "The Future of Messaging",
+    description:
+      "A next-generation Telegram experience with premium services, digital economy, and organization tools.",
+    featureFlags: {
+      waitlistEnabled: true,
+      premiumEnabled: true,
+      newsroomEnabled: true,
+      roadmapEnabled: true,
+      downloadsEnabled: true,
+    },
+  };
+}
+
+export function getPricingCategories(): PricingCategory[] {
+  const now = new Date().toISOString();
+
+  // Mirrored from spnet-admin/lib/premium-config.ts
+  const premiumPlans = [
+    {
+      id: "FREE",
+      name: "Free",
+      description: "Getting started with basic access",
+      monthly: 0,
+      badge: "Free",
+      recommended: false,
+      displayOrder: 0,
+      featuresByCategory: {
+        Messaging: ["Up to 100 messages/day", "Basic messaging"],
+        Storage: ["1 GB file storage", "Standard uploads (5 MB)"],
+        Media: ["Basic media processing", "Standard resolution"],
+        Administration: ["Basic dashboard", "Single user"],
+        Support: ["Community access", "72hr response"],
+        Security: ["Standard encryption"],
+      },
+      highlights: [
+        "Basic access included",
+        "Community support",
+        "Standard encryption",
+      ],
+    },
+    {
+      id: "BASIC",
+      name: "Basic",
+      description: "Essential features for everyday use",
+      monthly: 4,
+      badge: "Starter",
+      recommended: false,
+      displayOrder: 1,
+      featuresByCategory: {
+        Messaging: ["Up to 500 messages/day", "Message history", "Basic messaging"],
+        Storage: ["5 GB file storage", "Standard uploads (10 MB)"],
+        Media: ["Basic media processing", "Standard resolution"],
+        Administration: ["Enhanced dashboard", "Up to 3 users"],
+        Support: ["Email support", "48hr response"],
+        Security: ["Standard encryption", "Basic access control"],
+      },
+      highlights: [
+        "Increased limits from FREE",
+        "Basic access control",
+        "Email support",
+        "Enhanced dashboard",
+        "Up to 3 users",
+      ],
+    },
+    {
+      id: "STUDENT",
+      name: "Student",
+      description: "Discounted premium for students",
+      monthly: 6,
+      badge: "Student",
+      recommended: false,
+      displayOrder: 2,
+      featuresByCategory: {
+        Messaging: ["Up to 2,000 messages/day", "Extended message history", "Priority messaging"],
+        Storage: ["25 GB file storage", "Enhanced uploads (25 MB)"],
+        Media: ["Standard media processing", "HD resolution"],
+        Administration: ["Basic analytics", "Single user management"],
+        Support: ["Priority email support", "24hr response", "Chat support"],
+        Security: ["Enhanced encryption", "Basic access control"],
+        "Licensing Benefits": ["Student-discounted pricing", "Education license"],
+      },
+      highlights: [
+        "Discounted premium access",
+        "Premium badge included",
+        "Priority support queue",
+        "Enhanced upload limits",
+        "Extended storage capacity",
+        "Student-friendly pricing",
+      ],
+    },
+    {
+      id: "PLUS",
+      name: "Plus",
+      description: "For growing teams and creators",
+      monthly: 15,
+      badge: "Popular",
+      recommended: true,
+      displayOrder: 3,
+      featuresByCategory: {
+        Messaging: ["Up to 1,000 messages/day", "Message history", "Priority messaging"],
+        Storage: ["10 GB file storage", "Enhanced uploads (25 MB)"],
+        Media: ["Standard media processing", "HD resolution"],
+        Administration: ["Basic analytics dashboard", "Team management", "Single user management"],
+        Support: ["Email support", "48hr response"],
+        Security: ["Standard encryption", "Basic access control"],
+      },
+      highlights: [
+        "Everything in BASIC, plus:",
+        "Team management tools",
+        "Basic analytics dashboard",
+        "Priority messaging queue",
+        "HD media processing",
+        "Growing team features",
+      ],
+    },
+    {
+      id: "PRO",
+      name: "Pro",
+      description: "Professional toolkit for power users",
+      monthly: 29,
+      badge: "Professional",
+      recommended: false,
+      displayOrder: 4,
+      featuresByCategory: {
+        Messaging: ["Up to 10,000 messages/day", "Extended message history", "Priority messaging"],
+        Storage: ["50 GB file storage", "Enhanced uploads (50 MB)", "Faster downloads"],
+        Media: ["Advanced media processing", "HD resolution", "Batch media ops"],
+        Administration: ["Advanced analytics dashboard", "Team management", "Custom branding"],
+        Support: ["Priority email support", "12hr response", "Chat support"],
+        Security: ["Enhanced encryption", "Advanced access control", "Audit logs"],
+        "Business Tools": ["Basic API access"],
+      },
+      highlights: [
+        "Everything in PLUS, plus:",
+        "Advanced analytics & reporting",
+        "Custom branding support",
+        "Batch media operations",
+        "Faster uploads & downloads",
+        "Priority chat & email support",
+      ],
+    },
+    {
+      id: "BUSINESS",
+      name: "Business",
+      description: "Enterprise-ready for organizations",
+      monthly: 99,
+      badge: "Business",
+      recommended: false,
+      displayOrder: 5,
+      featuresByCategory: {
+        Messaging: ["Unlimited messages", "Full message history", "Priority messaging", "Bulk messaging"],
+        Storage: ["250 GB file storage", "Business uploads (200 MB)", "CDN delivery"],
+        Media: ["Premium media processing", "4K resolution", "Bulk media operations"],
+        Administration: ["Premium analytics & reports", "Organization management", "Bulk operations", "Custom integrations"],
+        Support: ["Dedicated support", "4hr response", "Phone & chat", "SLA: 99.9%"],
+        Security: ["Enterprise encryption", "Advanced audit logs", "Compliance reporting", "SSO/SAML"],
+        "Business Tools": ["Full API access", "Webhooks", "Custom integrations"],
+        "Licensing Benefits": ["Up to 25 devices", "Team licenses", "Multi-org support"],
+      },
+      highlights: [
+        "Everything in PRO, plus:",
+        "Organization management",
+        "Bulk operations at scale",
+        "Dedicated support team",
+        "99.9% SLA uptime guarantee",
+        "SSO/SAML & compliance",
+      ],
+    },
+    {
+      id: "ENTERPRISE",
+      name: "Enterprise",
+      description: "Maximum power and scale",
+      monthly: 299,
+      badge: "Enterprise",
+      recommended: false,
+      displayOrder: 6,
+      featuresByCategory: {
+        Messaging: ["Unlimited everything", "Real-time messaging", "Priority routing", "Custom integrations"],
+        Storage: ["Unlimited storage", "Unlimited uploads", "Global CDN", "Custom retention"],
+        Media: ["Enterprise media suite", "8K + HDR", "AI-powered processing", "Custom pipelines"],
+        Administration: ["Enterprise analytics suite", "Unlimited team scale", "White-label branding", "Priority feature access", "Custom development"],
+        Support: ["24/7 dedicated support", "1hr response", "Dedicated account manager", "SLA: 99.99%"],
+        Security: ["Maximum encryption", "Comprehensive audit logs", "Compliance reporting", "Dedicated security", "Custom policies"],
+        "Business Tools": ["Full API access", "Advanced webhooks", "Custom integrations", "Dedicated infrastructure"],
+        "Licensing Benefits": ["Unlimited devices", "Unlimited team scale", "Global licensing", "Priority allocations"],
+      },
+      highlights: [
+        "Everything in BUSINESS, plus:",
+        "Unlimited team & device scale",
+        "24/7 dedicated account manager",
+        "1-hour response SLA (99.99%)",
+        "White-label branding",
+        "AI-powered media processing",
+      ],
+    },
+    {
+      id: "EXTREME",
+      name: "Extreme",
+      description: "Ultra-premium for the elite",
+      monthly: 499,
+      badge: "Ultimate",
+      recommended: false,
+      displayOrder: 7,
+      featuresByCategory: {
+        Messaging: ["Unlimited everything", "Real-time priority routing", "Custom integration pipeline", "Private messaging channels"],
+        Storage: ["Unlimited storage", "Custom retention policies", "Global edge CDN", "Dedicated storage clusters"],
+        Media: ["Enterprise media suite", "8K + HDR + immersive", "AI-powered processing", "Custom development pipeline"],
+        Administration: ["Enterprise analytics suite", "Unlimited team scale", "White-label branding", "Priority feature access", "Dedicated development sprints", "Executive business reviews"],
+        Support: ["Concierge support", "30min response", "Dedicated account team", "SLA: 99.995%", "Direct engineering access"],
+        Security: ["Maximum encryption", "Comprehensive audit logs", "Custom security policies", "Dedicated security team", "Penetration testing included"],
+        "Business Tools": ["Full API access", "Custom webhook infrastructure", "Dedicated infrastructure", "Custom integrations SLA"],
+        "Licensing Benefits": ["Unlimited devices & teams", "Global licensing", "Priority allocations", "Custom license terms"],
+      },
+      highlights: [
+        "Everything in ENTERPRISE, plus:",
+        "Priority infrastructure allocation",
+        "Concierge onboarding & migration",
+        "Custom feature development SLA",
+        "Direct engineering access",
+        "Early access to all new features",
+      ],
+    },
+    {
+      id: "SP_PLAN",
+      name: "SP's Plan",
+      description: "Exclusive flagship founder tier",
+      monthly: 999,
+      badge: "Founder Edition",
+      recommended: false,
+      displayOrder: 8,
+      featuresByCategory: {
+        Messaging: ["Unlimited everything", "Real-time priority routing", "Custom integration pipeline", "Private messaging channels"],
+        Storage: ["Unlimited storage", "Custom retention policies", "Global edge CDN", "Dedicated storage clusters"],
+        Media: ["Enterprise media suite", "8K + HDR + immersive", "AI-powered processing", "Custom development pipeline"],
+        Administration: ["Enterprise analytics suite", "Unlimited team scale", "White-label branding", "Priority feature access", "Dedicated development sprints", "Executive business reviews"],
+        Support: ["Concierge support", "15min response", "Dedicated account team", "SLA: 99.995%", "Direct engineering access"],
+        Security: ["Maximum encryption", "Comprehensive audit logs", "Custom security policies", "Dedicated security team", "Penetration testing included"],
+        "Business Tools": ["Full API access", "Custom webhook infrastructure", "Dedicated infrastructure", "Custom integrations SLA"],
+        "Licensing Benefits": ["Unlimited devices & teams", "Global licensing", "Priority allocations", "Custom license terms"],
+      },
+      highlights: [
+        "Everything in EXTREME, plus:",
+        "Priority infrastructure allocation",
+        "Concierge onboarding & migration",
+        "Custom feature development SLA",
+        "Direct engineering access",
+        "Early access to all new features",
+      ],
+    },
+  ];
+
+  const allPremiumFeatures = Array.from(
+    new Set(premiumPlans.flatMap((p) => Object.values(p.featuresByCategory).flat())),
+  );
+
+  const toPremiumPlan = (plan: (typeof premiumPlans)[number]): PricingPlan => {
+    const planFeatures = Object.values(plan.featuresByCategory).flat();
+    return {
+      id: `plan-premium-${plan.id.toLowerCase()}`,
+      categoryId: "premium",
+      name: plan.name,
+      description: plan.description,
+      price: plan.monthly,
+      currency: "$",
+      billingInterval: "monthly",
+      recommended: plan.recommended,
+      badge: plan.badge,
+      displayOrder: plan.displayOrder,
+      active: true,
+      features: JSON.stringify(
+        allPremiumFeatures.map((label) => ({ label, included: planFeatures.includes(label) })),
+      ),
+      limitations: JSON.stringify([]),
+      highlights: JSON.stringify(plan.highlights),
+      featuresByCategory: JSON.stringify(plan.featuresByCategory),
+      createdAt: now,
+      updatedAt: now,
+    };
+  };
+
+  // Mirrored from spnet-admin/lib/economy-pricing.ts
+  const coinPackages = [
+    { label: "Starter", amount: 1000, price: 9.99, description: "Entry-level coin pack for testing and light engagement" },
+    { label: "Growth", amount: 5000, price: 44.99, description: "Higher-volume pack suitable for small teams" },
+    { label: "Pro", amount: 10000, price: 79.99, description: "Professional-grade pack with meaningful per-coin savings" },
+    { label: "Enterprise", amount: 50000, price: 349.99, description: "Maximum-volume pack with the best overall value" },
+  ];
+
+  const gemPackages = [
+    { label: "Starter", amount: 10, price: 9.99, description: "Entry-level gem pack for quick engagement and small rewards" },
+    { label: "Growth", amount: 50, price: 44.99, description: "Mid-volume pack with improved value per gem" },
+    { label: "Pro", amount: 100, price: 79.99, description: "Premium reward pack with full purchasing power unlocks" },
+    { label: "Enterprise", amount: 500, price: 349.99, description: "Enterprise-scale grant pack with maximum efficiency" },
+  ];
+
+  return [
+    {
+      id: "premium",
+      slug: "premium",
+      label: "Premium",
+      description: "Tiered subscription plans from Free to SP's exclusive Founder Edition.",
+      displayOrder: 1,
+      active: true,
+      createdAt: now,
+      updatedAt: now,
+      plans: premiumPlans.map(toPremiumPlan),
+    },
+    {
+      id: "gems",
+      slug: "gems",
+      label: "Gems",
+      description: "Premium currency for exclusive transactions, features, and ecosystem services.",
+      displayOrder: 2,
+      active: true,
+      createdAt: now,
+      updatedAt: now,
+      plans: gemPackages.map((pkg, idx) => ({
+        id: `plan-gems-${pkg.label.toLowerCase()}`,
+        categoryId: "gems",
+        name: `${pkg.amount.toLocaleString()} Gems`,
+        description: pkg.description,
+        price: pkg.price,
+        currency: "$",
+        billingInterval: "once",
+        recommended: false,
+        badge: null,
+        displayOrder: idx + 1,
+        active: true,
+        features: JSON.stringify([
+          { label: `${pkg.amount.toLocaleString()} Gems credited instantly`, included: true },
+        ]),
+        limitations: JSON.stringify([]),
+        amount: pkg.amount,
+        createdAt: now,
+        updatedAt: now,
+      })),
+    },
+    {
+      id: "coins",
+      slug: "coins",
+      label: "Coins",
+      description: "Digital currency earned through engagement and used for ecosystem participation.",
+      displayOrder: 3,
+      active: true,
+      createdAt: now,
+      updatedAt: now,
+      plans: coinPackages.map((pkg, idx) => ({
+        id: `plan-coins-${pkg.label.toLowerCase()}`,
+        categoryId: "coins",
+        name: `${pkg.amount.toLocaleString()} Coins`,
+        description: pkg.description,
+        price: pkg.price,
+        currency: "$",
+        billingInterval: "once",
+        recommended: false,
+        badge: null,
+        displayOrder: idx + 1,
+        active: true,
+        features: JSON.stringify([
+          { label: `${pkg.amount.toLocaleString()} Coins credited instantly`, included: true },
+        ]),
+        limitations: JSON.stringify([]),
+        amount: pkg.amount,
+        createdAt: now,
+        updatedAt: now,
+      })),
     },
   ];
 }

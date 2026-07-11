@@ -1,0 +1,6838 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "check",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Check API health status",
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "operationId": "login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authentication successful"
+          },
+          "401": {
+            "description": "Invalid credentials"
+          }
+        },
+        "summary": "Authenticate with email and password",
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "operationId": "refresh",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refreshToken": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token refreshed successfully"
+          },
+          "401": {
+            "description": "Invalid refresh token"
+          }
+        },
+        "summary": "Refresh access token using refresh token",
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "operationId": "logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Logged out successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Logout current session",
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
+    "/auth/logout-all": {
+      "post": {
+        "operationId": "logoutAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Logged out from all sessions"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Logout all active sessions",
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
+    "/team-members": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Team member created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create a new team member (Owner only)",
+        "tags": [
+          "Team Members"
+        ]
+      },
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of team members retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all team members",
+        "tags": [
+          "Team Members"
+        ]
+      }
+    },
+    "/team-members/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Team member ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team member retrieved successfully"
+          },
+          "404": {
+            "description": "Team member not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get team member by ID",
+        "tags": [
+          "Team Members"
+        ]
+      },
+      "patch": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Team member ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team member updated successfully"
+          },
+          "404": {
+            "description": "Team member not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update team member (Owner only)",
+        "tags": [
+          "Team Members"
+        ]
+      },
+      "delete": {
+        "operationId": "remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Team member ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team member deleted successfully"
+          },
+          "404": {
+            "description": "Team member not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Soft delete team member (Owner only)",
+        "tags": [
+          "Team Members"
+        ]
+      }
+    },
+    "/team-members/{id}/deactivate": {
+      "post": {
+        "operationId": "deactivate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Team member ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team member deactivated successfully"
+          },
+          "404": {
+            "description": "Team member not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Deactivate team member (Owner only)",
+        "tags": [
+          "Team Members"
+        ]
+      }
+    },
+    "/team-members/{id}/suspend": {
+      "post": {
+        "operationId": "suspend",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Team member ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team member suspended successfully"
+          },
+          "404": {
+            "description": "Team member not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Suspend team member (Owner only)",
+        "tags": [
+          "Team Members"
+        ]
+      }
+    },
+    "/team-members/{id}/reactivate": {
+      "post": {
+        "operationId": "reactivate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Team member ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team member reactivated successfully"
+          },
+          "404": {
+            "description": "Team member not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Reactivate team member (Owner only)",
+        "tags": [
+          "Team Members"
+        ]
+      }
+    },
+    "/applications": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Application created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Register a new official application",
+        "tags": [
+          "Applications"
+        ]
+      },
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "environment",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of applications retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all applications",
+        "tags": [
+          "Applications"
+        ]
+      }
+    },
+    "/applications/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Application ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application retrieved successfully"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get application by ID",
+        "tags": [
+          "Applications"
+        ]
+      },
+      "patch": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Application ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application updated successfully"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update application",
+        "tags": [
+          "Applications"
+        ]
+      },
+      "delete": {
+        "operationId": "remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Application ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application deleted successfully"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete application (Owner only)",
+        "tags": [
+          "Applications"
+        ]
+      }
+    },
+    "/applications/{id}/rotate-secret": {
+      "post": {
+        "operationId": "rotateSecret",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Application ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client secret rotated successfully"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Rotate client secret",
+        "tags": [
+          "Applications"
+        ]
+      }
+    },
+    "/applications/{id}/deactivate": {
+      "post": {
+        "operationId": "deactivate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Application ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application deactivated successfully"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Deactivate application (Owner only)",
+        "tags": [
+          "Applications"
+        ]
+      }
+    },
+    "/api-keys": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "API key created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create a new API key for an application",
+        "tags": [
+          "API Keys"
+        ]
+      },
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "applicationId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of API keys retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all API keys",
+        "tags": [
+          "API Keys"
+        ]
+      }
+    },
+    "/api-keys/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "API key ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "API key retrieved successfully"
+          },
+          "404": {
+            "description": "API key not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get API key by ID",
+        "tags": [
+          "API Keys"
+        ]
+      }
+    },
+    "/api-keys/{id}/rotate": {
+      "post": {
+        "operationId": "rotate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "API key ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "API key rotated successfully"
+          },
+          "404": {
+            "description": "API key not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Rotate API key (new key material)",
+        "tags": [
+          "API Keys"
+        ]
+      }
+    },
+    "/api-keys/{id}/expire": {
+      "post": {
+        "operationId": "expire",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "API key ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "API key expired successfully"
+          },
+          "404": {
+            "description": "API key not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Expire API key immediately",
+        "tags": [
+          "API Keys"
+        ]
+      }
+    },
+    "/api-keys/{id}/revoke": {
+      "post": {
+        "operationId": "revoke",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "API key ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "API key revoked successfully"
+          },
+          "404": {
+            "description": "API key not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Revoke API key permanently",
+        "tags": [
+          "API Keys"
+        ]
+      }
+    },
+    "/api/v1/public/settings": {
+      "get": {
+        "operationId": "getPublic",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "summary": "Get public settings",
+        "tags": [
+          "Public - Settings"
+        ]
+      }
+    },
+    "/api/v1/admin/settings": {
+      "get": {
+        "operationId": "getAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get all settings",
+        "tags": [
+          "Admin - Settings"
+        ]
+      }
+    },
+    "/api/v1/admin/settings/{key}": {
+      "get": {
+        "operationId": "getByKey",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "Setting key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get a setting by key",
+        "tags": [
+          "Admin - Settings"
+        ]
+      },
+      "put": {
+        "operationId": "set",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "Setting key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create or update a setting",
+        "tags": [
+          "Admin - Settings"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "Setting key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete a setting",
+        "tags": [
+          "Admin - Settings"
+        ]
+      }
+    },
+    "/api/v1/public/products": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "summary": "List published products",
+        "tags": [
+          "Public - Products"
+        ]
+      }
+    },
+    "/api/v1/public/products/{slug}": {
+      "get": {
+        "operationId": "findBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Product slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "summary": "Get product by slug",
+        "tags": [
+          "Public - Products"
+        ]
+      }
+    },
+    "/api/v1/admin/products": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Item created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create a product",
+        "tags": [
+          "Admin - Products"
+        ]
+      },
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "visibility",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "featured",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all products",
+        "tags": [
+          "Admin - Products"
+        ]
+      }
+    },
+    "/api/v1/admin/products/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get product by id",
+        "tags": [
+          "Admin - Products"
+        ]
+      },
+      "patch": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update a product",
+        "tags": [
+          "Admin - Products"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete a product (soft delete)",
+        "tags": [
+          "Admin - Products"
+        ]
+      }
+    },
+    "/api/v1/public/plans": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "summary": "List published plans",
+        "tags": [
+          "Public - Plans"
+        ]
+      }
+    },
+    "/api/v1/public/plans/{slug}": {
+      "get": {
+        "operationId": "findBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Plan slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "summary": "Get plan by slug",
+        "tags": [
+          "Public - Plans"
+        ]
+      }
+    },
+    "/api/v1/admin/plans": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Item created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create a plan",
+        "tags": [
+          "Admin - Plans"
+        ]
+      },
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "visibility",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all plans",
+        "tags": [
+          "Admin - Plans"
+        ]
+      }
+    },
+    "/api/v1/admin/plans/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get plan by id",
+        "tags": [
+          "Admin - Plans"
+        ]
+      },
+      "patch": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update a plan",
+        "tags": [
+          "Admin - Plans"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete a plan (soft delete)",
+        "tags": [
+          "Admin - Plans"
+        ]
+      }
+    },
+    "/api/v1/public/features": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "summary": "List all features",
+        "tags": [
+          "Public - Features"
+        ]
+      }
+    },
+    "/api/v1/public/features/{slug}": {
+      "get": {
+        "operationId": "findBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Feature slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "summary": "Get feature by slug",
+        "tags": [
+          "Public - Features"
+        ]
+      }
+    },
+    "/api/v1/admin/features": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Item created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create a feature",
+        "tags": [
+          "Admin - Features"
+        ]
+      },
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all features",
+        "tags": [
+          "Admin - Features"
+        ]
+      }
+    },
+    "/api/v1/admin/features/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get feature by id",
+        "tags": [
+          "Admin - Features"
+        ]
+      },
+      "patch": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update a feature",
+        "tags": [
+          "Admin - Features"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete a feature (soft delete)",
+        "tags": [
+          "Admin - Features"
+        ]
+      }
+    },
+    "/api/v1/public/announcements": {
+      "get": {
+        "operationId": "findPublished",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "summary": "List published announcements",
+        "tags": [
+          "Public - Announcements"
+        ]
+      }
+    },
+    "/api/v1/public/announcements/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "summary": "Get announcement by id",
+        "tags": [
+          "Public - Announcements"
+        ]
+      }
+    },
+    "/api/v1/admin/announcements": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Item created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create an announcement",
+        "tags": [
+          "Admin - Announcements"
+        ]
+      },
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all announcements",
+        "tags": [
+          "Admin - Announcements"
+        ]
+      }
+    },
+    "/api/v1/admin/announcements/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get announcement by id",
+        "tags": [
+          "Admin - Announcements"
+        ]
+      },
+      "patch": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update an announcement",
+        "tags": [
+          "Admin - Announcements"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete an announcement (soft delete)",
+        "tags": [
+          "Admin - Announcements"
+        ]
+      }
+    },
+    "/api/v1/public/news": {
+      "get": {
+        "operationId": "findPublished",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "summary": "List published news articles",
+        "tags": [
+          "Public - News"
+        ]
+      }
+    },
+    "/api/v1/public/news/{slug}": {
+      "get": {
+        "operationId": "findBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "News slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "summary": "Get published news article by slug",
+        "tags": [
+          "Public - News"
+        ]
+      }
+    },
+    "/api/v1/admin/news": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Item created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create a news article",
+        "tags": [
+          "Admin - News"
+        ]
+      },
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all news articles",
+        "tags": [
+          "Admin - News"
+        ]
+      }
+    },
+    "/api/v1/admin/news/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get news article by id",
+        "tags": [
+          "Admin - News"
+        ]
+      },
+      "patch": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update a news article",
+        "tags": [
+          "Admin - News"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete a news article (soft delete)",
+        "tags": [
+          "Admin - News"
+        ]
+      }
+    },
+    "/api/v1/public/roadmap": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quarter",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "priority",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "summary": "List all roadmap items",
+        "tags": [
+          "Public - Roadmap"
+        ]
+      }
+    },
+    "/api/v1/public/roadmap/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "summary": "Get roadmap item by id",
+        "tags": [
+          "Public - Roadmap"
+        ]
+      }
+    },
+    "/api/v1/admin/roadmap": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Item created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create a roadmap item",
+        "tags": [
+          "Admin - Roadmap"
+        ]
+      },
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quarter",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "priority",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all roadmap items",
+        "tags": [
+          "Admin - Roadmap"
+        ]
+      }
+    },
+    "/api/v1/admin/roadmap/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get roadmap item by id",
+        "tags": [
+          "Admin - Roadmap"
+        ]
+      },
+      "patch": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update a roadmap item",
+        "tags": [
+          "Admin - Roadmap"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete a roadmap item (soft delete)",
+        "tags": [
+          "Admin - Roadmap"
+        ]
+      }
+    },
+    "/api/v1/public/careers": {
+      "get": {
+        "operationId": "findOpen",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "department",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "employmentType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "summary": "List open positions",
+        "tags": [
+          "Public - Careers"
+        ]
+      }
+    },
+    "/api/v1/public/careers/{slug}": {
+      "get": {
+        "operationId": "findBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Career slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "summary": "Get published career by slug",
+        "tags": [
+          "Public - Careers"
+        ]
+      }
+    },
+    "/api/v1/admin/careers": {
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Item created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create a career",
+        "tags": [
+          "Admin - Careers"
+        ]
+      },
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "department",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "employmentType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all careers",
+        "tags": [
+          "Admin - Careers"
+        ]
+      }
+    },
+    "/api/v1/admin/careers/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item retrieved successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get career by id",
+        "tags": [
+          "Admin - Careers"
+        ]
+      },
+      "patch": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update a career",
+        "tags": [
+          "Admin - Careers"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete a career (soft delete)",
+        "tags": [
+          "Admin - Careers"
+        ]
+      }
+    },
+    "/api/v1/public/contact": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "summary": "Get contact locations and methods",
+        "tags": [
+          "Public - Contact"
+        ]
+      }
+    },
+    "/api/v1/admin/contact/locations": {
+      "get": {
+        "operationId": "getLocations",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all contact locations",
+        "tags": [
+          "Admin - Contact"
+        ]
+      },
+      "post": {
+        "operationId": "createLocation",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Item created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create a contact location",
+        "tags": [
+          "Admin - Contact"
+        ]
+      }
+    },
+    "/api/v1/admin/contact/locations/{id}": {
+      "patch": {
+        "operationId": "updateLocation",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update a contact location",
+        "tags": [
+          "Admin - Contact"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteLocation",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete a contact location",
+        "tags": [
+          "Admin - Contact"
+        ]
+      }
+    },
+    "/api/v1/admin/contact/methods": {
+      "get": {
+        "operationId": "getMethods",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of items retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all contact methods",
+        "tags": [
+          "Admin - Contact"
+        ]
+      },
+      "post": {
+        "operationId": "createMethod",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Item created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Create a contact method",
+        "tags": [
+          "Admin - Contact"
+        ]
+      }
+    },
+    "/api/v1/admin/contact/methods/{id}": {
+      "patch": {
+        "operationId": "updateMethod",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Item updated successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update a contact method",
+        "tags": [
+          "Admin - Contact"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteMethod",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Item ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item deleted successfully"
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete a contact method",
+        "tags": [
+          "Admin - Contact"
+        ]
+      }
+    },
+    "/api/v1/public/system": {
+      "get": {
+        "operationId": "getInfo",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "System information retrieved successfully"
+          }
+        },
+        "summary": "Get system information",
+        "tags": [
+          "Public - System"
+        ]
+      }
+    },
+    "/api/v1/public/system/health": {
+      "get": {
+        "operationId": "health",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Health check passed"
+          }
+        },
+        "summary": "Health check",
+        "tags": [
+          "Public - System"
+        ]
+      }
+    },
+    "/api/v1/admin/dashboard": {
+      "get": {
+        "operationId": "getDashboard",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get aggregated dashboard data",
+        "tags": [
+          "Admin / Dashboard"
+        ]
+      }
+    },
+    "/api/v1/admin/statistics": {
+      "get": {
+        "operationId": "getStatistics",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get platform statistics",
+        "tags": [
+          "Admin / Statistics"
+        ]
+      }
+    },
+    "/api/v1/admin/audit-logs": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "action",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resource",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List audit logs",
+        "tags": [
+          "Admin / Audit Logs"
+        ]
+      }
+    },
+    "/api/v1/admin/audit-logs/actions": {
+      "get": {
+        "operationId": "getActions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List distinct audit actions",
+        "tags": [
+          "Admin / Audit Logs"
+        ]
+      }
+    },
+    "/api/v1/admin/permissions": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all permissions",
+        "tags": [
+          "Admin / Permissions"
+        ]
+      }
+    },
+    "/api/v1/admin/roles": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List all roles",
+        "tags": [
+          "Admin / Roles"
+        ]
+      }
+    },
+    "/api/v1/admin/me": {
+      "get": {
+        "operationId": "getProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get current authenticated user profile",
+        "tags": [
+          "Admin / Current User"
+        ]
+      }
+    },
+    "/api/v1/admin/me/session": {
+      "get": {
+        "operationId": "getSession",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get current session information",
+        "tags": [
+          "Admin / Current User"
+        ]
+      }
+    },
+    "/api/v1/website/landing": {
+      "get": {
+        "operationId": "getLanding",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get landing page data",
+        "tags": [
+          "Website / Landing"
+        ]
+      }
+    },
+    "/api/v1/website/products": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "category",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "List published products",
+        "tags": [
+          "Website / Products"
+        ]
+      }
+    },
+    "/api/v1/website/products/{slug}": {
+      "get": {
+        "operationId": "findBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get product by slug",
+        "tags": [
+          "Website / Products"
+        ]
+      }
+    },
+    "/api/v1/website/plans": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "List published plans",
+        "tags": [
+          "Website / Plans"
+        ]
+      }
+    },
+    "/api/v1/website/plans/{slug}": {
+      "get": {
+        "operationId": "findBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get plan by slug",
+        "tags": [
+          "Website / Plans"
+        ]
+      }
+    },
+    "/api/v1/website/features": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "List features",
+        "tags": [
+          "Website / Features"
+        ]
+      }
+    },
+    "/api/v1/website/features/{slug}": {
+      "get": {
+        "operationId": "findBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get feature by slug",
+        "tags": [
+          "Website / Features"
+        ]
+      }
+    },
+    "/api/v1/website/roadmap": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get public roadmap",
+        "tags": [
+          "Website / Roadmap"
+        ]
+      }
+    },
+    "/api/v1/website/news": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "category",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "List published news articles",
+        "tags": [
+          "Website / News"
+        ]
+      }
+    },
+    "/api/v1/website/news/{slug}": {
+      "get": {
+        "operationId": "findBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get news article by slug",
+        "tags": [
+          "Website / News"
+        ]
+      }
+    },
+    "/api/v1/website/announcements": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get active announcements",
+        "tags": [
+          "Website / Announcements"
+        ]
+      }
+    },
+    "/api/v1/website/careers": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "department",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "employmentType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "List open positions",
+        "tags": [
+          "Website / Careers"
+        ]
+      }
+    },
+    "/api/v1/website/careers/{slug}": {
+      "get": {
+        "operationId": "findBySlug",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get career by slug",
+        "tags": [
+          "Website / Careers"
+        ]
+      }
+    },
+    "/api/v1/website/contact": {
+      "get": {
+        "operationId": "getContact",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get contact information",
+        "tags": [
+          "Website / Contact"
+        ]
+      }
+    },
+    "/api/v1/website/company": {
+      "get": {
+        "operationId": "getCompany",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get company information",
+        "tags": [
+          "Website / Company"
+        ]
+      }
+    },
+    "/api/v1/website/footer": {
+      "get": {
+        "operationId": "getFooter",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get footer data",
+        "tags": [
+          "Website / Footer"
+        ]
+      }
+    },
+    "/api/v1/website/navigation": {
+      "get": {
+        "operationId": "getNavigation",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get navigation data",
+        "tags": [
+          "Website / Navigation"
+        ]
+      }
+    },
+    "/api/v1/admin/media/upload": {
+      "post": {
+        "operationId": "upload",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "File uploaded successfully"
+          },
+          "400": {
+            "description": "Invalid file"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Upload a file",
+        "tags": [
+          "Admin / Media"
+        ]
+      }
+    },
+    "/api/v1/admin/media": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "mimeType",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of media files retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List media files",
+        "tags": [
+          "Admin / Media"
+        ]
+      }
+    },
+    "/api/v1/admin/media/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Media ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Media file retrieved successfully"
+          },
+          "404": {
+            "description": "Media file not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get media by id",
+        "tags": [
+          "Admin / Media"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Media ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Media file deleted successfully"
+          },
+          "404": {
+            "description": "Media file not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Delete media",
+        "tags": [
+          "Admin / Media"
+        ]
+      }
+    },
+    "/api/v1/admin/applications": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "environment",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "healthStatus",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of registered applications retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "List registered applications",
+        "tags": [
+          "Admin / Application Registry"
+        ]
+      }
+    },
+    "/api/v1/admin/applications/summary": {
+      "get": {
+        "operationId": "getSummary",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Application registry summary retrieved successfully"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get application registry summary",
+        "tags": [
+          "Admin / Application Registry"
+        ]
+      }
+    },
+    "/api/v1/admin/applications/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Application ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application retrieved successfully"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Get application by id",
+        "tags": [
+          "Admin / Application Registry"
+        ]
+      }
+    },
+    "/api/v1/admin/applications/{id}/health": {
+      "patch": {
+        "operationId": "updateHealth",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Application ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Application health status updated successfully"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "summary": "Update application health status",
+        "tags": [
+          "Admin / Application Registry"
+        ]
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "operationId": "checkHealth",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "API is healthy"
+          }
+        },
+        "summary": "Check API health status",
+        "tags": [
+          "System"
+        ]
+      }
+    },
+    "/api/v1/info": {
+      "get": {
+        "operationId": "getInfo",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "API information retrieved successfully"
+          }
+        },
+        "summary": "Get API information",
+        "tags": [
+          "System"
+        ]
+      }
+    },
+    "/api/v1/status": {
+      "get": {
+        "operationId": "getStatus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "System status retrieved successfully"
+          }
+        },
+        "summary": "Get system status including database, cache, and uptime",
+        "tags": [
+          "System"
+        ]
+      }
+    },
+    "/api/v1/identity/register": {
+      "post": {
+        "operationId": "register",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIdentityDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "summary": "Register a new Universal Identity",
+        "tags": [
+          "Universal Identity"
+        ]
+      }
+    },
+    "/api/v1/identity/login": {
+      "post": {
+        "operationId": "login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIdentityDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Authenticate a Universal Identity",
+        "tags": [
+          "Universal Identity"
+        ]
+      }
+    },
+    "/api/v1/identity/logout": {
+      "post": {
+        "operationId": "logout",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Logout current identity session",
+        "tags": [
+          "Universal Identity"
+        ]
+      }
+    },
+    "/api/v1/identity/me": {
+      "get": {
+        "operationId": "me",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Get current identity details",
+        "tags": [
+          "Universal Identity"
+        ]
+      },
+      "put": {
+        "operationId": "updateMe",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateIdentityDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Update current identity",
+        "tags": [
+          "Universal Identity"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteMe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Delete current identity",
+        "tags": [
+          "Universal Identity"
+        ]
+      }
+    },
+    "/api/v1/identity/products": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "List all registered SP NET products",
+        "tags": [
+          "Universal Identity - Product Registry"
+        ]
+      },
+      "post": {
+        "operationId": "register",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterProductDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "summary": "Register a new SP NET product",
+        "tags": [
+          "Universal Identity - Product Registry"
+        ]
+      }
+    },
+    "/api/v1/identity/products/{code}": {
+      "get": {
+        "operationId": "findByCode",
+        "parameters": [
+          {
+            "name": "code",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Get product registry entry by code",
+        "tags": [
+          "Universal Identity - Product Registry"
+        ]
+      }
+    },
+    "/api/v1/identity/profiles": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "List all product profiles for current identity",
+        "tags": [
+          "Universal Identity - Product Profiles"
+        ]
+      },
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProductProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Create a product profile",
+        "tags": [
+          "Universal Identity - Product Profiles"
+        ]
+      }
+    },
+    "/api/v1/identity/profiles/{productCode}": {
+      "get": {
+        "operationId": "findByProductCode",
+        "parameters": [
+          {
+            "name": "productCode",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Get product profile by product code",
+        "tags": [
+          "Universal Identity - Product Profiles"
+        ]
+      },
+      "put": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "productCode",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProductProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Update a product profile",
+        "tags": [
+          "Universal Identity - Product Profiles"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "productCode",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Delete a product profile",
+        "tags": [
+          "Universal Identity - Product Profiles"
+        ]
+      }
+    },
+    "/api/v1/identity/licenses": {
+      "get": {
+        "operationId": "findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "List all licenses across all profiles",
+        "tags": [
+          "Universal Identity - Product Licenses"
+        ]
+      },
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProductLicenseDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Create a new license for a product profile",
+        "tags": [
+          "Universal Identity - Product Licenses"
+        ]
+      }
+    },
+    "/api/v1/identity/licenses/profile/{productCode}": {
+      "get": {
+        "operationId": "findByProfile",
+        "parameters": [
+          {
+            "name": "productCode",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "List licenses for a specific product profile",
+        "tags": [
+          "Universal Identity - Product Licenses"
+        ]
+      }
+    },
+    "/api/v1/identity/licenses/{id}": {
+      "get": {
+        "operationId": "findById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Get a specific license by ID",
+        "tags": [
+          "Universal Identity - Product Licenses"
+        ]
+      }
+    },
+    "/api/v1/identity/licenses/{id}/revoke": {
+      "post": {
+        "operationId": "revoke",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "Identity": []
+          }
+        ],
+        "summary": "Revoke a license",
+        "tags": [
+          "Universal Identity - Product Licenses"
+        ]
+      }
+    },
+    "/api/v1/platform/families": {
+      "get": {
+        "operationId": "listFamilies",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of product families retrieved successfully"
+          }
+        },
+        "summary": "List all product families",
+        "tags": [
+          "Product Platform"
+        ]
+      },
+      "post": {
+        "operationId": "createFamily",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product family created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create a new product family",
+        "tags": [
+          "Product Platform"
+        ]
+      }
+    },
+    "/api/v1/platform/families/{slug}": {
+      "get": {
+        "operationId": "getFamily",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Product family slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product family retrieved successfully"
+          },
+          "404": {
+            "description": "Product family not found"
+          }
+        },
+        "summary": "Get a product family with its products",
+        "tags": [
+          "Product Platform"
+        ]
+      },
+      "put": {
+        "operationId": "updateFamily",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Product family slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product family updated successfully"
+          },
+          "404": {
+            "description": "Product family not found"
+          }
+        },
+        "summary": "Update a product family",
+        "tags": [
+          "Product Platform"
+        ]
+      },
+      "delete": {
+        "operationId": "archiveFamily",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Product family slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product family archived successfully"
+          },
+          "404": {
+            "description": "Product family not found"
+          }
+        },
+        "summary": "Archive a product family",
+        "tags": [
+          "Product Platform"
+        ]
+      }
+    },
+    "/api/v1/platform/products": {
+      "get": {
+        "operationId": "listProducts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of products retrieved successfully"
+          }
+        },
+        "summary": "List all products",
+        "tags": [
+          "Product Platform"
+        ]
+      }
+    },
+    "/api/v1/platform/families/{slug}/products": {
+      "get": {
+        "operationId": "listFamilyProducts",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Product family slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of products retrieved successfully"
+          }
+        },
+        "summary": "List products in a family",
+        "tags": [
+          "Product Platform"
+        ]
+      },
+      "post": {
+        "operationId": "createProduct",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Product family slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create a product in a family",
+        "tags": [
+          "Product Platform"
+        ]
+      }
+    },
+    "/api/v1/platform/products/{code}": {
+      "get": {
+        "operationId": "getProduct",
+        "parameters": [
+          {
+            "name": "code",
+            "required": true,
+            "in": "path",
+            "description": "Product code",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product retrieved successfully"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        },
+        "summary": "Get a product with its resources",
+        "tags": [
+          "Product Platform"
+        ]
+      },
+      "put": {
+        "operationId": "updateProduct",
+        "parameters": [
+          {
+            "name": "code",
+            "required": true,
+            "in": "path",
+            "description": "Product code",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Product updated successfully"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        },
+        "summary": "Update a product",
+        "tags": [
+          "Product Platform"
+        ]
+      },
+      "delete": {
+        "operationId": "archiveProduct",
+        "parameters": [
+          {
+            "name": "code",
+            "required": true,
+            "in": "path",
+            "description": "Product code",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product archived successfully"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        },
+        "summary": "Archive a product",
+        "tags": [
+          "Product Platform"
+        ]
+      }
+    },
+    "/api/v1/platform/resource-types": {
+      "get": {
+        "operationId": "listResourceTypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of resource types retrieved successfully"
+          }
+        },
+        "summary": "List all resource types",
+        "tags": [
+          "Product Platform"
+        ]
+      }
+    },
+    "/api/v1/platform/products/{code}/resources": {
+      "get": {
+        "operationId": "listResources",
+        "parameters": [
+          {
+            "name": "code",
+            "required": true,
+            "in": "path",
+            "description": "Product code",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of resources retrieved successfully"
+          }
+        },
+        "summary": "List resources for a product",
+        "tags": [
+          "Product Platform"
+        ]
+      },
+      "post": {
+        "operationId": "createResource",
+        "parameters": [
+          {
+            "name": "code",
+            "required": true,
+            "in": "path",
+            "description": "Product code",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Resource created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create a resource for a product",
+        "tags": [
+          "Product Platform"
+        ]
+      }
+    },
+    "/api/v1/platform/resources/{id}": {
+      "get": {
+        "operationId": "getResource",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Resource ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resource retrieved successfully"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Get a resource with deployments",
+        "tags": [
+          "Product Platform"
+        ]
+      },
+      "put": {
+        "operationId": "updateResource",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Resource ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Resource updated successfully"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Update a resource",
+        "tags": [
+          "Product Platform"
+        ]
+      },
+      "delete": {
+        "operationId": "archiveResource",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Resource ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resource archived successfully"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Archive a resource",
+        "tags": [
+          "Product Platform"
+        ]
+      }
+    },
+    "/api/v1/platform/resources/{id}/deployments": {
+      "get": {
+        "operationId": "listDeployments",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Resource ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of deployments retrieved successfully"
+          }
+        },
+        "summary": "List deployments for a resource",
+        "tags": [
+          "Product Platform"
+        ]
+      },
+      "post": {
+        "operationId": "createDeployment",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Resource ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Deployment created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create a deployment for a resource",
+        "tags": [
+          "Product Platform"
+        ]
+      }
+    },
+    "/api/v1/platform/deployments/{id}": {
+      "put": {
+        "operationId": "updateDeployment",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Deployment ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deployment updated successfully"
+          },
+          "404": {
+            "description": "Deployment not found"
+          }
+        },
+        "summary": "Update a deployment status",
+        "tags": [
+          "Product Platform"
+        ]
+      }
+    },
+    "/api/v1/platform/capabilities": {
+      "get": {
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "category",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of capabilities retrieved successfully"
+          }
+        },
+        "summary": "List all capabilities",
+        "tags": [
+          "Platform - Capability Registry"
+        ]
+      },
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Capability created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create a new capability",
+        "tags": [
+          "Platform - Capability Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/capabilities/{slug}": {
+      "get": {
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Capability slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Capability retrieved successfully"
+          },
+          "404": {
+            "description": "Capability not found"
+          }
+        },
+        "summary": "Get a capability with mapped products and services",
+        "tags": [
+          "Platform - Capability Registry"
+        ]
+      },
+      "put": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Capability slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Capability updated successfully"
+          },
+          "404": {
+            "description": "Capability not found"
+          }
+        },
+        "summary": "Update a capability",
+        "tags": [
+          "Platform - Capability Registry"
+        ]
+      },
+      "delete": {
+        "operationId": "archive",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Capability slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Capability archived successfully"
+          },
+          "404": {
+            "description": "Capability not found"
+          }
+        },
+        "summary": "Archive a capability",
+        "tags": [
+          "Platform - Capability Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/capabilities/{slug}/products/{productCode}": {
+      "post": {
+        "operationId": "mapProduct",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Capability slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productCode",
+            "required": true,
+            "in": "path",
+            "description": "Product code",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Product mapped to capability successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Map a product to a capability",
+        "tags": [
+          "Platform - Capability Registry"
+        ]
+      },
+      "delete": {
+        "operationId": "unmapProduct",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Capability slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productCode",
+            "required": true,
+            "in": "path",
+            "description": "Product code",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product unmapped from capability successfully"
+          },
+          "404": {
+            "description": "Capability or product not found"
+          }
+        },
+        "summary": "Unmap a product from a capability",
+        "tags": [
+          "Platform - Capability Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services": {
+      "get": {
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "categorySlug",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "visibility",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of services retrieved successfully"
+          }
+        },
+        "summary": "List all platform services",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Service created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Register a new service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}": {
+      "get": {
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service retrieved successfully"
+          },
+          "404": {
+            "description": "Service not found"
+          }
+        },
+        "summary": "Get a service with capabilities, instances, dependencies, and product mappings",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "put": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Service updated successfully"
+          },
+          "404": {
+            "description": "Service not found"
+          }
+        },
+        "summary": "Update a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "delete": {
+        "operationId": "archive",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service archived successfully"
+          },
+          "404": {
+            "description": "Service not found"
+          }
+        },
+        "summary": "Archive a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/capabilities/{capabilitySlug}": {
+      "post": {
+        "operationId": "mapCapability",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "capabilitySlug",
+            "required": true,
+            "in": "path",
+            "description": "Capability slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Capability mapped to service successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Map a capability to a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "delete": {
+        "operationId": "unmapCapability",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "capabilitySlug",
+            "required": true,
+            "in": "path",
+            "description": "Capability slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Capability unmapped from service successfully"
+          },
+          "404": {
+            "description": "Service or capability not found"
+          }
+        },
+        "summary": "Unmap a capability from a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/categories": {
+      "get": {
+        "operationId": "listCategories",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of categories retrieved successfully"
+          }
+        },
+        "summary": "List service categories",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "post": {
+        "operationId": "createCategory",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Category created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create a service category",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/categories/{slug}": {
+      "get": {
+        "operationId": "getCategory",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Category slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category retrieved successfully"
+          },
+          "404": {
+            "description": "Category not found"
+          }
+        },
+        "summary": "Get a category with its services",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/instances": {
+      "get": {
+        "operationId": "listInstances",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of instances retrieved successfully"
+          }
+        },
+        "summary": "List instances for a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "post": {
+        "operationId": "createInstance",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Instance created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create an instance for a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/instances/{instanceSlug}": {
+      "delete": {
+        "operationId": "deleteInstance",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instanceSlug",
+            "required": true,
+            "in": "path",
+            "description": "Instance slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Instance archived successfully"
+          },
+          "404": {
+            "description": "Instance not found"
+          }
+        },
+        "summary": "Archive an instance",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/capabilities/list": {
+      "get": {
+        "operationId": "listServiceCapabilities",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of capabilities retrieved successfully"
+          }
+        },
+        "summary": "List service-specific capabilities",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "post": {
+        "operationId": "createServiceCapability",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Capability created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Add a service-specific capability",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/capabilities/list/{capabilitySlug}": {
+      "delete": {
+        "operationId": "deleteServiceCapability",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "capabilitySlug",
+            "required": true,
+            "in": "path",
+            "description": "Capability slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Capability removed successfully"
+          },
+          "404": {
+            "description": "Capability not found"
+          }
+        },
+        "summary": "Remove a service-specific capability",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/dependencies": {
+      "get": {
+        "operationId": "listDependencies",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of dependencies retrieved successfully"
+          }
+        },
+        "summary": "List service dependencies",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/dependencies/{dependsOnSlug}": {
+      "post": {
+        "operationId": "addDependency",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dependsOnSlug",
+            "required": true,
+            "in": "path",
+            "description": "Dependency service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Dependency added successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Add a dependency to a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "delete": {
+        "operationId": "removeDependency",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dependsOnSlug",
+            "required": true,
+            "in": "path",
+            "description": "Dependency service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dependency removed successfully"
+          },
+          "404": {
+            "description": "Dependency not found"
+          }
+        },
+        "summary": "Remove a dependency from a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/products": {
+      "get": {
+        "operationId": "listProductMappings",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of product mappings retrieved successfully"
+          }
+        },
+        "summary": "List product mappings for a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/products/{productSlug}": {
+      "post": {
+        "operationId": "addProductMapping",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productSlug",
+            "required": true,
+            "in": "path",
+            "description": "Product slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Product mapped to service successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Map a product to a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "delete": {
+        "operationId": "removeProductMapping",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productSlug",
+            "required": true,
+            "in": "path",
+            "description": "Product slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product unmapped from service successfully"
+          },
+          "404": {
+            "description": "Product mapping not found"
+          }
+        },
+        "summary": "Unmap a product from a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/health": {
+      "get": {
+        "operationId": "listHealthRecords",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of health records retrieved successfully"
+          }
+        },
+        "summary": "List health records for a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "post": {
+        "operationId": "recordHealth",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Health record created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Record a health check for a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/services/{slug}/metrics": {
+      "get": {
+        "operationId": "listMetrics",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of metrics retrieved successfully"
+          }
+        },
+        "summary": "List metrics for a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      },
+      "post": {
+        "operationId": "recordMetric",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Service slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Metrics recorded successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Record metrics for a service",
+        "tags": [
+          "Platform - Service Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/config": {
+      "get": {
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "group",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of configuration entries retrieved successfully"
+          }
+        },
+        "summary": "List platform configuration",
+        "tags": [
+          "Platform - Configuration"
+        ]
+      },
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Configuration entry created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create a config entry",
+        "tags": [
+          "Platform - Configuration"
+        ]
+      }
+    },
+    "/api/v1/platform/config/{key}": {
+      "get": {
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "Configuration key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Configuration entry retrieved successfully"
+          },
+          "404": {
+            "description": "Configuration entry not found"
+          }
+        },
+        "summary": "Get a config value",
+        "tags": [
+          "Platform - Configuration"
+        ]
+      },
+      "put": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "Configuration key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Configuration entry updated successfully"
+          },
+          "404": {
+            "description": "Configuration entry not found"
+          }
+        },
+        "summary": "Update a config entry",
+        "tags": [
+          "Platform - Configuration"
+        ]
+      },
+      "delete": {
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "Configuration key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Configuration entry deleted successfully"
+          },
+          "404": {
+            "description": "Configuration entry not found"
+          }
+        },
+        "summary": "Delete a config entry",
+        "tags": [
+          "Platform - Configuration"
+        ]
+      }
+    },
+    "/api/v1/platform/features": {
+      "get": {
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "includeDisabled",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of feature flags retrieved successfully"
+          }
+        },
+        "summary": "List feature flags",
+        "tags": [
+          "Platform - Feature Flags"
+        ]
+      },
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Feature flag created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create a feature flag",
+        "tags": [
+          "Platform - Feature Flags"
+        ]
+      }
+    },
+    "/api/v1/platform/features/{key}": {
+      "get": {
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "Feature flag key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Feature flag retrieved successfully"
+          },
+          "404": {
+            "description": "Feature flag not found"
+          }
+        },
+        "summary": "Get a feature flag",
+        "tags": [
+          "Platform - Feature Flags"
+        ]
+      },
+      "put": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "Feature flag key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Feature flag updated successfully"
+          },
+          "404": {
+            "description": "Feature flag not found"
+          }
+        },
+        "summary": "Update a feature flag",
+        "tags": [
+          "Platform - Feature Flags"
+        ]
+      },
+      "delete": {
+        "operationId": "archive",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "Feature flag key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Feature flag archived successfully"
+          },
+          "404": {
+            "description": "Feature flag not found"
+          }
+        },
+        "summary": "Archive a feature flag",
+        "tags": [
+          "Platform - Feature Flags"
+        ]
+      }
+    },
+    "/api/v1/platform/features/{key}/check": {
+      "get": {
+        "operationId": "check",
+        "parameters": [
+          {
+            "name": "key",
+            "required": true,
+            "in": "path",
+            "description": "Feature flag key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Feature flag status retrieved successfully"
+          }
+        },
+        "summary": "Check if a feature flag is enabled",
+        "tags": [
+          "Platform - Feature Flags"
+        ]
+      }
+    },
+    "/api/v1/platform/environments": {
+      "get": {
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "includeInactive",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of environments retrieved successfully"
+          }
+        },
+        "summary": "List platform environments",
+        "tags": [
+          "Platform - Environment Registry"
+        ]
+      },
+      "post": {
+        "operationId": "create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Environment created successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Create an environment",
+        "tags": [
+          "Platform - Environment Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/environments/{slug}": {
+      "get": {
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Environment slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Environment retrieved successfully"
+          },
+          "404": {
+            "description": "Environment not found"
+          }
+        },
+        "summary": "Get an environment",
+        "tags": [
+          "Platform - Environment Registry"
+        ]
+      },
+      "put": {
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Environment slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Environment updated successfully"
+          },
+          "404": {
+            "description": "Environment not found"
+          }
+        },
+        "summary": "Update an environment",
+        "tags": [
+          "Platform - Environment Registry"
+        ]
+      },
+      "delete": {
+        "operationId": "archive",
+        "parameters": [
+          {
+            "name": "slug",
+            "required": true,
+            "in": "path",
+            "description": "Environment slug",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Environment archived successfully"
+          },
+          "404": {
+            "description": "Environment not found"
+          }
+        },
+        "summary": "Archive an environment",
+        "tags": [
+          "Platform - Environment Registry"
+        ]
+      }
+    },
+    "/api/v1/platform/events": {
+      "get": {
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of events retrieved successfully"
+          }
+        },
+        "summary": "List platform events",
+        "tags": [
+          "Platform - Events"
+        ]
+      },
+      "post": {
+        "operationId": "emit",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Event emitted successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        },
+        "summary": "Emit a platform event",
+        "tags": [
+          "Platform - Events"
+        ]
+      }
+    },
+    "/api/v1/platform/events/types": {
+      "get": {
+        "operationId": "listTypes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of event types retrieved successfully"
+          }
+        },
+        "summary": "List distinct event types with counts",
+        "tags": [
+          "Platform - Events"
+        ]
+      }
+    },
+    "/api/v1/platform/events/{id}": {
+      "get": {
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Event ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Event retrieved successfully"
+          },
+          "404": {
+            "description": "Event not found"
+          }
+        },
+        "summary": "Get an event by ID",
+        "tags": [
+          "Platform - Events"
+        ]
+      }
+    },
+    "/api/v1/platform/dashboard": {
+      "get": {
+        "operationId": "getSummary",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Dashboard summary retrieved successfully"
+          }
+        },
+        "summary": "Get platform dashboard summary",
+        "tags": [
+          "Platform - Dashboard"
+        ]
+      }
+    },
+    "/api/v1/platform/dashboard/health": {
+      "get": {
+        "operationId": "getHealth",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Platform health status retrieved successfully"
+          }
+        },
+        "summary": "Get platform health status",
+        "tags": [
+          "Platform - Dashboard"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "SP NET API",
+    "description": "Private backend platform powering the SP NET ecosystem.",
+    "version": "0.1.0",
+    "contact": {
+      "name": "SP NET Team",
+      "url": "",
+      "email": ""
+    },
+    "license": {
+      "name": "Private",
+      "url": ""
+    }
+  },
+  "tags": [],
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local Development"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      },
+      "x-api-key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      },
+      "Identity": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-identity-token"
+      }
+    },
+    "schemas": {
+      "Object": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateIdentityDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateIdentityDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "RegisterProductDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateProductProfileDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateProductProfileDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateProductLicenseDto": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

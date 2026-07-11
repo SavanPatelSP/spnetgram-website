@@ -3,70 +3,19 @@ export interface NavLink {
   href: string;
 }
 
-export interface Feature {
-  icon: string;
+export interface NewsroomArticle {
   title: string;
-  description: string;
-  gradient: string;
-  accent: string;
-}
-
-export interface ProductCard {
-  id: string;
-  title: string;
-  description: string;
-  features: string[];
-  icon: string;
-  gradient: string;
-  accent: string;
-  href: string;
-}
-
-export interface Testimonial {
-  quote: string;
+  slug: string;
+  excerpt: string;
+  date: string;
+  category: string;
   author: string;
-  role: string;
-  avatar: string;
-}
-
-export interface Statistic {
-  value: string;
-  label: string;
-  prefix?: string;
-  suffix?: string;
 }
 
 export interface FAQItem {
   question: string;
   answer: string;
   category: string;
-}
-
-export interface BlogPost {
-  title: string;
-  slug: string;
-  excerpt: string;
-  content?: string;
-  author: string;
-  date: string;
-  category: string;
-  readTime: string;
-  image?: string;
-}
-
-export interface NewsroomArticle {
-  title: string;
-  slug: string;
-  excerpt: string;
-  content?: string;
-  date: string;
-  category:
-    | "Product Updates"
-    | "Security Updates"
-    | "Development Updates"
-    | "Announcements"
-    | "Release Notes";
-  author: string;
 }
 
 export interface RoadmapItem {
@@ -113,31 +62,4 @@ export interface StatusMetric {
   value: number;
   description: string;
   status: "success" | "warning" | "neutral";
-}
-
-export interface TeamMember {
-  name: string;
-  role: string;
-  description: string;
-}
-
-export type WaitlistStatus = "PENDING" | "INVITED" | "APPROVED" | "REJECTED";
-
-export interface WaitlistEntry {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  telegramUsername?: string;
-  status: WaitlistStatus;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface WaitlistFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  telegramUsername: string;
-  agreedToUpdates: boolean;
 }

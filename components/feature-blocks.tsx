@@ -72,7 +72,7 @@ export function FeatureBlocks() {
           <section
             key={block.id}
             id={block.id}
-            className="border-t border-border/30 py-28 sm:py-36"
+            className="border-t border-white/[0.04] py-24 sm:py-32"
           >
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className={`grid items-center gap-12 lg:gap-20 ${block.reversed ? "lg:grid-flow-dense" : ""} lg:grid-cols-2`}>

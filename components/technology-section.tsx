@@ -37,7 +37,7 @@ const techFeatures = [
 
 export function TechnologySection() {
   return (
-    <section id="technology" className="relative border-t border-border/30 py-28 sm:py-36 overflow-hidden">
+    <section id="technology" className="relative border-t border-white/[0.04] py-24 sm:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.01] via-transparent to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -64,7 +64,7 @@ export function TechnologySection() {
             const Icon = item.icon;
             return (
               <ScrollReveal key={item.title} delay={i * 60}>
-                <div className="group rounded-2xl border border-border/20 bg-card/30 p-6 transition-all duration-300 card-depth">
+                <div className="group rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-all duration-300 card-depth">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/15 to-cyan-500/10 text-blue-400 mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Icon className="h-6 w-6" />
                   </div>

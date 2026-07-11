@@ -1,12 +1,64 @@
 import Link from "next/link";
-import { ArrowRight, Sparkles, Shield, Zap, MessageCircle, ChevronDown } from "lucide-react";
+import { ArrowRight, Sparkles, Shield, Zap, Palette, Crown, Smartphone, Gauge, ChevronDown, Bot, Gem, Globe, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PhoneMockup } from "@/components/phone-mockup";
 
+const features = [
+  {
+    icon: Zap,
+    label: "Lightning Fast",
+    description: "Powered by Telegram's high-performance messaging infrastructure.",
+    color: "text-blue-400",
+    bg: "bg-blue-500/10",
+  },
+  {
+    icon: Shield,
+    label: "Built on Telegram",
+    description: "A powerful third-party client built on Telegram's secure cloud platform.",
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/10",
+  },
+  {
+    icon: Sparkles,
+    label: "AI-Powered",
+    description: "Integrated AI tools to enhance productivity and communication.",
+    color: "text-purple-400",
+    bg: "bg-purple-500/10",
+  },
+  {
+    icon: Palette,
+    label: "Advanced Customisation",
+    description: "More personalization options than the standard Telegram client.",
+    color: "text-pink-400",
+    bg: "bg-pink-500/10",
+  },
+  {
+    icon: Crown,
+    label: "Premium Experience",
+    description: "Unlock exclusive enhancements, customization, and premium features.",
+    color: "text-amber-400",
+    bg: "bg-amber-500/10",
+  },
+  {
+    icon: Smartphone,
+    label: "Cross-Platform Sync",
+    description: "Continue your conversations seamlessly across supported devices.",
+    color: "text-cyan-400",
+    bg: "bg-cyan-500/10",
+  },
+  {
+    icon: Gauge,
+    label: "Productivity Tools",
+    description: "Designed for power users, creators, professionals, and communities.",
+    color: "text-indigo-400",
+    bg: "bg-indigo-500/10",
+  },
+];
+
 export function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section id="hero" className="relative min-h-screen overflow-hidden">
       {/* Background layers */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.03] via-transparent to-background" />
       <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] rounded-full bg-gradient-to-b from-blue-500/[0.05] to-transparent blur-3xl" />
@@ -56,7 +108,7 @@ export function Hero() {
             {/* CTAs */}
             <div className="mt-10 flex flex-col gap-4 sm:flex-row animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
               <Link href="/waitlist">
-                <Button variant="primary" size="xl" className="w-full sm:w-auto shine">
+                <Button variant="primary" size="xl" className="w-full sm:w-auto shine group">
                   <Sparkles className="h-5 w-5" />
                   Download SP NET GRAM
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -69,20 +121,19 @@ export function Hero() {
               </Link>
             </div>
 
-            {/* Trust indicators */}
-            <div className="mt-12 flex flex-wrap items-center gap-6 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-              {[
-                { icon: Shield, label: "End-to-End Encrypted", color: "text-emerald-400", bg: "bg-emerald-500/10" },
-                { icon: Zap, label: "Lightning Fast", color: "text-blue-400", bg: "bg-blue-500/10" },
-                { icon: Sparkles, label: "AI-Powered", color: "text-purple-400", bg: "bg-purple-500/10" },
-              ].map((item) => {
-                const Icon = item.icon;
+            {/* Feature highlights */}
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+              {features.map((feature) => {
+                const Icon = feature.icon;
                 return (
-                  <div key={item.label} className="flex items-center gap-2.5 text-sm">
-                    <div className={`flex h-9 w-9 items-center justify-center rounded-xl ${item.bg}`}>
-                      <Icon className={`h-5 w-5 ${item.color}`} />
+                  <div key={feature.label} className="flex items-start gap-3">
+                    <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${feature.bg}`}>
+                      <Icon className={`h-5 w-5 ${feature.color}`} />
                     </div>
-                    <span className="text-muted-foreground/70 font-medium">{item.label}</span>
+                    <div className="min-w-0">
+                      <span className="text-sm font-medium text-foreground/80">{feature.label}</span>
+                      <p className="text-xs text-muted-foreground/50 leading-relaxed mt-0.5">{feature.description}</p>
+                    </div>
                   </div>
                 );
               })}
@@ -91,20 +142,40 @@ export function Hero() {
 
           {/* Right - Phone mockup */}
           <div className="relative animate-fade-in" style={{ animationDelay: "0.4s" }}>
-            {/* Floating elements */}
-            <div className="absolute -top-6 -right-4 h-16 w-16 animate-float">
-              <div className="flex h-full w-full items-center justify-center rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/15 to-blue-600/5 backdrop-blur-xl shadow-lg shadow-blue-500/10">
-                <MessageCircle className="h-7 w-7 text-blue-400" />
+            {/* Floating feature badges — wide orbit around screenshot */}
+            <div className="absolute -top-[46px] left-1/2 ml-[-18px] md:-top-[84px] md:ml-[-22px] lg:-top-[134px] lg:ml-[-32px] xl:-top-[180px] xl:ml-[-40px] z-10 flex animate-float-drift-1">
+              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/15 to-blue-600/5 backdrop-blur-xl shadow-xl shadow-blue-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/30 hover:from-blue-500/25 hover:to-blue-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                <Zap className="h-4 w-4 text-blue-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
               </div>
             </div>
-            <div className="absolute -bottom-4 -left-6 h-14 w-14 animate-float-delayed">
-              <div className="flex h-full w-full items-center justify-center rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/15 to-purple-600/5 backdrop-blur-xl shadow-lg shadow-purple-500/10">
-                <Sparkles className="h-6 w-6 text-purple-400" />
+            <div className="absolute top-[15%] left-1/2 ml-[-186px] md:ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-2">
+              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/15 to-emerald-600/5 backdrop-blur-xl shadow-xl shadow-emerald-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-emerald-500/30 hover:from-emerald-500/25 hover:to-emerald-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                <Shield className="h-4 w-4 text-emerald-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
               </div>
             </div>
-            <div className="absolute top-[20%] -right-8 h-12 w-12 animate-float-slow">
-              <div className="flex h-full w-full items-center justify-center rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/15 to-amber-600/5 backdrop-blur-xl shadow-lg shadow-amber-500/10">
-                <Zap className="h-5 w-5 text-amber-400" />
+            <div className="absolute top-[10%] left-1/2 ml-[150px] md:ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-3">
+              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/15 to-purple-600/5 backdrop-blur-xl shadow-xl shadow-purple-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/30 hover:from-purple-500/25 hover:to-purple-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                <Bot className="h-4 w-4 text-purple-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+              </div>
+            </div>
+            <div className="absolute top-[45%] left-1/2 ml-[-186px] md:ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-1" style={{ animationDelay: "0.8s" }}>
+              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-pink-500/20 bg-gradient-to-br from-pink-500/15 to-pink-600/5 backdrop-blur-xl shadow-xl shadow-pink-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-pink-500/30 hover:from-pink-500/25 hover:to-pink-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                <Palette className="h-4 w-4 text-pink-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+              </div>
+            </div>
+            <div className="absolute top-[50%] left-1/2 ml-[150px] md:ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-2" style={{ animationDelay: "1.2s" }}>
+              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/15 to-amber-600/5 backdrop-blur-xl shadow-xl shadow-amber-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-amber-500/30 hover:from-amber-500/25 hover:to-amber-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                <Gem className="h-4 w-4 text-amber-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+              </div>
+            </div>
+            <div className="absolute top-[75%] left-1/2 ml-[-186px] md:ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-3" style={{ animationDelay: "1.6s" }}>
+              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/15 to-cyan-600/5 backdrop-blur-xl shadow-xl shadow-cyan-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/30 hover:from-cyan-500/25 hover:to-cyan-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                <Globe className="h-4 w-4 text-cyan-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+              </div>
+            </div>
+            <div className="absolute top-[80%] left-1/2 ml-[150px] md:ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-1" style={{ animationDelay: "2s" }}>
+              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/15 to-indigo-600/5 backdrop-blur-xl shadow-xl shadow-indigo-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-indigo-500/30 hover:from-indigo-500/25 hover:to-indigo-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                <Rocket className="h-4 w-4 text-indigo-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
               </div>
             </div>
 

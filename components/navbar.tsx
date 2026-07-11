@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight, Sparkles, ChevronDown } from "lucide-react";
@@ -10,8 +11,15 @@ import { navLinks, siteConfig } from "@/config/site";
 function Logo() {
   return (
     <Link href="/" className="group flex items-center gap-2.5 shrink-0">
-      <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 shadow-lg shadow-blue-500/20 transition-all duration-300 group-hover:shadow-blue-500/30 group-hover:scale-105">
-        <span className="text-sm font-bold text-white tracking-tight">S</span>
+      <div className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl transition-all duration-300 group-hover:scale-105">
+        <Image
+          src="/group59.png"
+          alt="SP NET GRAM"
+          fill
+          className="object-contain"
+          sizes="36px"
+          priority
+        />
       </div>
       <div className="flex flex-col">
         <span className="text-sm font-bold tracking-tight leading-tight">

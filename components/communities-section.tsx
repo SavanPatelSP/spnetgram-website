@@ -37,7 +37,7 @@ const communityFeatures = [
 
 export function CommunitiesSection() {
   return (
-    <section id="community" className="border-t border-border/30 py-28 sm:py-36">
+    <section id="community" className="border-t border-white/[0.04] py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="mx-auto max-w-3xl text-center mb-16">
@@ -61,7 +61,7 @@ export function CommunitiesSection() {
             const Icon = item.icon;
             return (
               <ScrollReveal key={item.title} delay={i * 60}>
-                <div className="group flex items-start gap-4 rounded-2xl border border-border/20 bg-card/30 p-6 transition-all duration-300 card-depth">
+                <div className="group flex items-start gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-all duration-300 card-depth">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/15 to-indigo-500/10 text-blue-400 group-hover:scale-105 transition-transform duration-300">
                     <Icon className="h-6 w-6" />
                   </div>

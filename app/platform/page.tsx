@@ -7,7 +7,7 @@ import { Coins, Gem, Shield, Sparkles, Building2, LayoutDashboard, Globe, Messag
 export const metadata: Metadata = {
   title: "Platform",
   description:
-    "SPNETGRAM enhances the Telegram experience with premium memberships, Coins, Gems, and more.",
+    "SP NET GRAM enhances the Telegram experience with premium memberships, Coins, Gems, and more.",
 };
 
 const highlightSections = [
@@ -93,7 +93,7 @@ export default function PlatformPage() {
               <span className="text-muted-foreground/70">plus the extras</span>
             </h1>
             <p className="mt-5 text-base sm:text-lg text-muted-foreground/70 leading-relaxed max-w-2xl mx-auto">
-              SPNETGRAM enhances the Telegram experience with premium features, digital currencies,
+              SP NET GRAM enhances the Telegram experience with premium features, digital currencies,
               organization tools, and a growing ecosystem — all on top of your existing Telegram account.
             </p>
           </div>
@@ -136,7 +136,7 @@ export default function PlatformPage() {
 
       <CTASection
         title="Experience the platform"
-        description="Join the beta and try SPNETGRAM's enhanced Telegram experience."
+        description="Join the beta and try SP NET GRAM's enhanced Telegram experience."
         primaryLabel="Join Beta"
         primaryHref="/beta"
         secondaryLabel="View Development"

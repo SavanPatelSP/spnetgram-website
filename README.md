@@ -13,7 +13,6 @@ SP NET GRAM is an independent third-party Telegram client and ecosystem project 
 - Public Status Center
 - Roadmap
 - Newsroom
-- Blog
 - Documentation
 - Careers
 - Support Center

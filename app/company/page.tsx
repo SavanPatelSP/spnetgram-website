@@ -132,8 +132,6 @@ export default function CompanyPage() {
         description="Follow SP NET GRAM's development and be part of the community."
         primaryLabel="Join Beta"
         primaryHref="/beta"
-        secondaryLabel="Read Blog"
-        secondaryHref="/blog"
       />
     </>
   );

@@ -1,123 +1,193 @@
-import { ScrollReveal } from "@/components/scroll-reveal";
-import { Badge } from "@/components/ui/badge";
-import { Sparkles, Check, Clock, ArrowRight } from "lucide-react";
+"use client";
 
-const roadmapItems = [
-  {
-    phase: "Phase 1",
-    title: "Foundation",
-    items: ["Core messaging platform", "End-to-end encryption", "Multi-device sync", "User authentication"],
-    status: "completed" as const,
-  },
-  {
-    phase: "Phase 2",
-    title: "Premium Features",
-    items: ["AI assistant integration", "Custom themes & badges", "Cloud storage", "Voice & video calls"],
-    status: "completed" as const,
-  },
-  {
-    phase: "Phase 3",
-    title: "Community Tools",
-    items: ["Communities & channels", "Moderation suite", "Analytics dashboard", "Monetization tools"],
-    status: "in-progress" as const,
-  },
-  {
-    phase: "Phase 4",
-    title: "Enterprise Launch",
-    items: ["Organization management", "SSO & compliance", "API platform", "Global infrastructure"],
-    status: "planned" as const,
-  },
-  {
-    phase: "Phase 5",
-    title: "Ecosystem",
-    items: ["SP NET ADMIN", "SP NET CLOUD", "Developer SDKs", "Third-party integrations"],
-    status: "planned" as const,
-  },
+import * as React from "react";
+import { Check, Clock, Circle, Zap, Layers } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { cn } from "@/lib/utils";
+import { useRoadmapItems } from "@/hooks/use-roadmap";
+import { DataLoader } from "@/components/ui/loaders/data-loader";
+
+function normalizeRoadmapStatus(status: string): string {
+  if (status === "in_progress") return "in-progress";
+  if (status === "planned") return "future";
+  return status;
+}
+
+const statusConfig: Record<string, { icon: typeof Circle; color: string; border: string; bg: string; text: string; label: string }> = {
+  completed: { icon: Check, color: "bg-emerald-500", border: "border-emerald-500/30", bg: "bg-emerald-500/10", text: "text-emerald-400", label: "Completed" },
+  "in-progress": { icon: Zap, color: "bg-blue-500", border: "border-blue-500/30", bg: "bg-blue-500/10", text: "text-blue-400", label: "In Progress" },
+  next: { icon: Clock, color: "bg-amber-500", border: "border-amber-500/30", bg: "bg-amber-500/10", text: "text-amber-400", label: "Up Next" },
+  later: { icon: Layers, color: "bg-purple-500", border: "border-purple-500/20", bg: "bg-purple-500/10", text: "text-purple-400", label: "On the Horizon" },
+  future: { icon: Circle, color: "bg-muted-foreground/20", border: "border-muted-foreground/10", bg: "bg-muted-foreground/5", text: "text-muted-foreground/40", label: "Future" },
+};
+
+const filterCategories = [
+  { id: "completed", label: "Completed", icon: Check },
+  { id: "in-progress", label: "Now", icon: Zap },
+  { id: "next", label: "Next", icon: Clock },
+  { id: "later", label: "Later", icon: Layers },
+  { id: "future", label: "Future", icon: Circle },
 ];
 
 export function RoadmapSection() {
+  const [activeFilter, setActiveFilter] = React.useState<string | null>(null);
+  const query = useRoadmapItems();
+
   return (
-    <section id="roadmap" className="border-t border-border/30 py-28 sm:py-36">
+    <section id="roadmap" className="border-t border-white/[0.04] py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
-          <div className="mx-auto max-w-3xl text-center mb-16">
-            <Badge variant="outline" className="mb-5">
-              <Clock className="h-3 w-3 mr-1" />
-              Roadmap
-            </Badge>
+          <div className="mx-auto max-w-3xl text-center mb-12">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-muted-foreground/60 mb-5 backdrop-blur-sm">
+              <Clock className="h-3 w-3" />
+              Product Roadmap
+            </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05]">
-              What&apos;s coming
-              <br />
-              <span className="text-muted-foreground/40">next.</span>
+              The path ahead
             </h2>
             <p className="mt-5 text-base sm:text-lg text-muted-foreground/60 leading-relaxed max-w-2xl mx-auto">
-              We&apos;re building the future of communication. Here&apos;s what&apos;s on the horizon.
+              From foundation to enterprise. Every milestone brings us closer to redefining communication.
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-[23px] top-0 bottom-0 w-px bg-border/30 hidden sm:block" />
+        <DataLoader
+          query={query}
+          empty={
+            <div className="text-center py-12">
+              <p className="text-sm text-muted-foreground/40">Roadmap data not yet published.</p>
+            </div>
+          }
+        >
+          {(milestones) => {
+            const filtered = activeFilter
+              ? milestones.filter((m) => normalizeRoadmapStatus(m.status) === activeFilter)
+              : milestones;
 
-          <div className="space-y-8">
-            {roadmapItems.map((item, i) => (
-              <ScrollReveal key={item.phase} delay={i * 80}>
-                <div className="relative flex flex-col sm:flex-row gap-6 sm:gap-10">
-                  {/* Status indicator */}
-                  <div className="flex sm:flex-col items-center gap-3 sm:items-center shrink-0">
-                    <div
-                      className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl border-2 transition-all duration-300 ${
-                        item.status === "completed"
-                          ? "border-emerald-500/50 bg-emerald-500/10"
-                          : item.status === "in-progress"
-                          ? "border-blue-500/50 bg-blue-500/10"
-                          : "border-border/30 bg-card/30"
-                      }`}
-                    >
-                      {item.status === "completed" ? (
-                        <Check className="h-5 w-5 text-emerald-400" />
-                      ) : item.status === "in-progress" ? (
-                        <Sparkles className="h-5 w-5 text-blue-400" />
-                      ) : (
-                        <Clock className="h-5 w-5 text-muted-foreground/30" />
+            const sorted = [...filtered].sort((a, b) => a.displayOrder - b.displayOrder);
+
+            return (
+              <>
+                {/* Filter bar */}
+                <ScrollReveal delay={50}>
+                  <div className="flex flex-wrap justify-center gap-2 mb-12">
+                    <button
+                      onClick={() => setActiveFilter(null)}
+                      className={cn(
+                        "rounded-lg px-3.5 py-1.5 text-xs font-medium transition-all duration-300",
+                        activeFilter === null
+                          ? "bg-foreground text-background shadow-sm"
+                          : "text-muted-foreground/50 hover:text-foreground border border-white/[0.06]",
                       )}
-                    </div>
-                    <span
-                      className={`text-[9px] font-semibold uppercase tracking-widest whitespace-nowrap ${
-                        item.status === "completed"
-                          ? "text-emerald-400"
-                          : item.status === "in-progress"
-                          ? "text-blue-400"
-                          : "text-muted-foreground/30"
-                      }`}
                     >
-                      {item.status === "completed" ? "Done" : item.status === "in-progress" ? "In Progress" : "Planned"}
-                    </span>
+                      All
+                    </button>
+                    {filterCategories.map((cat) => {
+                      const Icon = cat.icon;
+                      return (
+                        <button
+                          key={cat.id}
+                          onClick={() => setActiveFilter(activeFilter === cat.id ? null : cat.id)}
+                          className={cn(
+                            "inline-flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-medium transition-all duration-300",
+                            activeFilter === cat.id
+                              ? "bg-foreground text-background shadow-sm"
+                              : "text-muted-foreground/50 hover:text-foreground border border-white/[0.06]",
+                          )}
+                        >
+                          <Icon className="h-3 w-3" />
+                          {cat.label}
+                        </button>
+                      );
+                    })}
                   </div>
+                </ScrollReveal>
 
-                  {/* Content */}
-                  <div className="flex-1 rounded-2xl border border-border/20 bg-card/30 p-6 sm:p-7 transition-all duration-300 card-depth">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-[10px] font-semibold text-muted-foreground/40 uppercase tracking-widest">{item.phase}</span>
-                    </div>
-                    <h4 className="text-lg font-bold tracking-tight mb-3">{item.title}</h4>
-                    <ul className="space-y-1.5">
-                      {item.items.map((it) => (
-                        <li key={it} className="flex items-center gap-2.5 text-sm text-muted-foreground/60">
-                          <span className={`h-1 w-1 rounded-full ${
-                            item.status === "completed" ? "bg-emerald-400" : item.status === "in-progress" ? "bg-blue-400" : "bg-muted-foreground/20"
-                          }`} />
-                          {it}
-                        </li>
-                      ))}
-                    </ul>
+                {/* Timeline */}
+                <div className="relative">
+                  {/* Vertical connector line */}
+                  <div className="absolute left-6 md:left-[104px] top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/20 via-purple-500/10 to-transparent hidden md:block" />
+
+                  <div className="space-y-5">
+                    {sorted.map((milestone, i) => {
+                      const config = statusConfig[normalizeRoadmapStatus(milestone.status)] ?? statusConfig.future;
+                      const CircleIcon = Circle;
+                      const StatusIcon = config.icon;
+
+                      return (
+                        <ScrollReveal key={milestone.id} delay={i * 60}>
+                          <div className="group relative flex flex-col md:flex-row gap-4 md:gap-0">
+                            {/* Timeline node */}
+                            <div className="flex md:flex-col items-center gap-3 shrink-0 md:w-28 md:pt-1">
+                              <div
+                                className={cn(
+                                  "relative z-10 flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-500 md:ml-6",
+                                  config.border,
+                                  config.bg,
+                                  "group-hover:scale-110 group-hover:shadow-lg",
+                                )}
+                              >
+                                <CircleIcon className={cn("h-4 w-4", config.text)} />
+                              </div>
+                              <span className={cn("text-[9px] font-semibold uppercase tracking-widest whitespace-nowrap hidden md:block", config.text)}>
+                                {config.label}
+                              </span>
+                            </div>
+
+                            {/* Card */}
+                            <div className="flex-1 rounded-xl border border-white/[0.05] bg-white/[0.02] p-5 sm:p-6 transition-all duration-400 hover:border-white/[0.08] hover:bg-white/[0.03] card-depth md:-ml-5">
+                              <div className="flex items-center gap-2 mb-1">
+                                <StatusIcon className={cn("h-3 w-3", config.text)} />
+                                <span className={cn("text-[10px] font-semibold uppercase tracking-widest", config.text)}>
+                                  {config.label}
+                                </span>
+                              </div>
+
+                              <h4 className="text-lg font-bold tracking-tight mb-1.5">{milestone.title}</h4>
+                              <p className="text-sm text-muted-foreground/60 leading-relaxed mb-3">{milestone.description}</p>
+
+                              {milestone.release && (
+                                <div className="mb-3 text-[11px] text-muted-foreground/30 font-medium">
+                                  Expected: {milestone.release}
+                                </div>
+                              )}
+
+                              {milestone.progress > 0 && (
+                                <div>
+                                  <div className="flex items-center justify-between text-[10px] text-muted-foreground/30 mb-1">
+                                    <span>Progress</span>
+                                    <span>{milestone.progress}%</span>
+                                  </div>
+                                  <div className="h-1 rounded-full bg-white/[0.04] overflow-hidden">
+                                    <div
+                                      className={cn("h-full rounded-full transition-all duration-500", config.color)}
+                                      style={{ width: `${milestone.progress}%` }}
+                                    />
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </ScrollReveal>
+                      );
+                    })}
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
+              </>
+            );
+          }}
+        </DataLoader>
+
+        <ScrollReveal delay={200}>
+          <div className="mt-12 text-center">
+            <div className="inline-flex items-center gap-2 rounded-lg border border-white/[0.04] bg-white/[0.02] px-4 py-2.5">
+              <Clock className="h-3.5 w-3.5 text-muted-foreground/30" />
+              <span className="text-xs text-muted-foreground/30">
+                Timeline is managed in SP NET ADMIN and subject to change.
+              </span>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
