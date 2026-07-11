@@ -105,9 +105,6 @@ export function RoadmapSection() {
 
                 {/* Timeline */}
                 <div className="relative">
-                  {/* Vertical connector line */}
-                  <div className="absolute left-6 md:left-[104px] top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/20 via-purple-500/10 to-transparent hidden md:block" />
-
                   <div className="space-y-5">
                     {sorted.map((milestone, i) => {
                       const config = statusConfig[normalizeRoadmapStatus(milestone.status)] ?? statusConfig.future;
@@ -117,8 +114,16 @@ export function RoadmapSection() {
                       return (
                         <ScrollReveal key={milestone.id} delay={i * 60}>
                           <div className="group relative flex flex-col md:flex-row gap-4 md:gap-0">
+                            {/* Top connector segment */}
+                            {i > 0 && (
+                              <div
+                                className="absolute left-[20px] md:left-[44px] w-px bg-gradient-to-b from-blue-500/20 via-purple-500/10 to-blue-500/20 z-[1]"
+                                style={{ top: "-20px", height: "20px" }}
+                              />
+                            )}
+
                             {/* Timeline node */}
-                            <div className="flex md:flex-col items-center gap-3 shrink-0 md:w-28 md:pt-1">
+                            <div className="flex md:flex-col items-center md:items-start gap-3 shrink-0 md:w-28 md:pt-1">
                               <div
                                 className={cn(
                                   "relative z-10 flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-500 md:ml-6",
@@ -135,7 +140,7 @@ export function RoadmapSection() {
                             </div>
 
                             {/* Card */}
-                            <div className="flex-1 rounded-xl border border-white/[0.05] bg-white/[0.02] p-5 sm:p-6 transition-all duration-400 hover:border-white/[0.08] hover:bg-white/[0.03] card-depth md:-ml-5">
+                            <div className="flex-1 ml-[52px] md:ml-0 rounded-xl border border-white/[0.05] bg-white/[0.02] p-5 sm:p-6 transition-all duration-400 hover:border-white/[0.08] hover:bg-white/[0.03] card-depth md:-ml-5">
                               <div className="flex items-center gap-2 mb-1">
                                 <StatusIcon className={cn("h-3 w-3", config.text)} />
                                 <span className={cn("text-[10px] font-semibold uppercase tracking-widest", config.text)}>
