@@ -70,11 +70,11 @@ export function RoadmapSection() {
               <>
                 {/* Filter bar */}
                 <ScrollReveal delay={50}>
-                  <div className="flex flex-wrap justify-center gap-2 mb-12">
+                  <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-12">
                     <button
                       onClick={() => setActiveFilter(null)}
                       className={cn(
-                        "rounded-lg px-3.5 py-1.5 text-xs font-medium transition-all duration-300",
+                        "rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-300",
                         activeFilter === null
                           ? "bg-foreground text-background shadow-sm"
                           : "text-muted-foreground/50 hover:text-foreground border border-white/[0.06]",
@@ -89,7 +89,7 @@ export function RoadmapSection() {
                           key={cat.id}
                           onClick={() => setActiveFilter(activeFilter === cat.id ? null : cat.id)}
                           className={cn(
-                            "inline-flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-medium transition-all duration-300",
+                            "inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-300",
                             activeFilter === cat.id
                               ? "bg-foreground text-background shadow-sm"
                               : "text-muted-foreground/50 hover:text-foreground border border-white/[0.06]",
@@ -180,9 +180,9 @@ export function RoadmapSection() {
 
         <ScrollReveal delay={200}>
           <div className="mt-12 text-center">
-            <div className="inline-flex items-center gap-2 rounded-lg border border-white/[0.04] bg-white/[0.02] px-4 py-2.5">
-              <Clock className="h-3.5 w-3.5 text-muted-foreground/30" />
-              <span className="text-xs text-muted-foreground/30">
+            <div className="inline-flex items-center gap-2 rounded-lg border border-white/[0.04] bg-white/[0.02] px-4 py-2.5 max-w-full">
+              <Clock className="h-3.5 w-3.5 text-muted-foreground/30 shrink-0" />
+              <span className="text-xs text-muted-foreground/30 text-center">
                 Timeline is managed in SP NET CONTROL CENTER and subject to change.
               </span>
             </div>

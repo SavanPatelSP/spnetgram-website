@@ -384,7 +384,7 @@ export function ScreenshotShowcase() {
                   key={screen.id}
                   onClick={() => goTo(i)}
                   className={cn(
-                    "flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-medium transition-all duration-300",
+                    "flex items-center gap-2 rounded-full px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs font-medium transition-all duration-300",
                     i === activeIndex
                       ? "bg-foreground text-background shadow-md scale-105"
                       : "text-muted-foreground/60 hover:text-foreground hover:bg-accent/50"
@@ -397,7 +397,7 @@ export function ScreenshotShowcase() {
             </div>
 
             <div className="relative px-0 sm:px-16">
-              <div className="mx-auto w-[260px] sm:w-[290px] md:w-[330px]">
+              <div className="mx-auto w-[240px] sm:w-[290px] md:w-[330px]">
                 <div className="absolute -inset-1 rounded-[2.8rem] bg-gradient-to-b from-zinc-600 via-zinc-700 to-zinc-800 opacity-60 blur-sm" />
                 <div className="relative rounded-[2.5rem] border-[2.5px] border-zinc-600 bg-zinc-900 p-[5px] shadow-2xl shadow-black/40">
                   <div className="absolute left-1/2 top-0 z-20 h-6 w-[120px] -translate-x-1/2 rounded-b-2xl bg-zinc-900">
@@ -418,14 +418,14 @@ export function ScreenshotShowcase() {
 
               <button
                 onClick={prev}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-0 sm:-translate-x-5 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-muted-foreground hover:text-foreground hover:border-border/60 shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
+                className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 sm:-translate-x-5 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-muted-foreground hover:text-foreground hover:border-border/60 shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
                 aria-label="Previous screen"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
               <button
                 onClick={next}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-0 sm:translate-x-5 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-muted-foreground hover:text-foreground hover:border-border/60 shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
+                className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 sm:translate-x-5 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-muted-foreground hover:text-foreground hover:border-border/60 shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
                 aria-label="Next screen"
               >
                 <ChevronRight className="h-4 w-4" />

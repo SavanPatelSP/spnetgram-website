@@ -82,7 +82,7 @@ export function FeatureBlocks() {
                     <Badge variant={block.badgeVariant} className="mb-5">
                       {block.badge}
                     </Badge>
-                    <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.05]">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.05]">
                       {block.title}
                       <br />
                       <span className="text-muted-foreground/40">{block.highlight}</span>
@@ -95,11 +95,11 @@ export function FeatureBlocks() {
                         const Icon = f.icon;
                         const c = block.accent;
                         return (
-                          <div key={f.label} className="flex items-start gap-4">
+                          <div key={f.label} className="flex items-start gap-4 text-left">
                             <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border/20 bg-card/30 ${c}`}>
                               <Icon className="h-5 w-5" />
                             </div>
-                            <div>
+                            <div className="min-w-0">
                               <div className="text-sm font-semibold">{f.label}</div>
                               <div className="text-xs text-muted-foreground/50 mt-0.5">{f.description}</div>
                             </div>

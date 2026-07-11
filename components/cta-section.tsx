@@ -24,7 +24,7 @@ export function CTASection({
     <section className="border-t border-border/50 py-16 sm:py-24 lg:py-32">
       <ScrollReveal>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl border border-border/30 bg-card/30 p-10 sm:p-16 text-center card-depth">
+          <div className="relative overflow-hidden rounded-2xl border border-border/30 bg-card/30 p-6 sm:p-16 text-center card-depth">
             <div className="absolute inset-0 bg-gradient-to-br from-[#3390ec]/5 via-amber-500/[0.02] to-transparent" />
             <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-[#3390ec]/[0.04] blur-3xl" />
             <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-amber-500/[0.03] blur-3xl" />
@@ -32,7 +32,7 @@ export function CTASection({
               <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-500 shadow-lg shadow-amber-500/20">
                 <Sparkles className="h-7 w-7 text-black" />
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-[1.1]">
+              <h2 className="text-2xl sm:text-4xl font-bold tracking-tight leading-[1.1]">
                 {title}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-base sm:text-lg text-muted-foreground/70 leading-relaxed">

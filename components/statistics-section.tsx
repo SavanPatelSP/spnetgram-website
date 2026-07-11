@@ -77,9 +77,9 @@ export function StatisticsSection() {
 
         <ScrollReveal delay={200}>
           <div className="mt-12 text-center">
-            <div className="inline-flex items-center gap-2 rounded-xl border border-border/10 bg-card/10 px-5 py-3">
-              <BarChart3 className="h-4 w-4 text-muted-foreground/30" />
-              <span className="text-xs text-muted-foreground/30">
+            <div className="inline-flex items-center gap-2 rounded-xl border border-border/10 bg-card/10 px-4 sm:px-5 py-3 max-w-full">
+              <BarChart3 className="h-4 w-4 text-muted-foreground/30 shrink-0" />
+              <span className="text-xs text-muted-foreground/30 text-center">
                 Metrics powered by SP NET CONTROL CENTER. Updates are reflected automatically.
               </span>
             </div>

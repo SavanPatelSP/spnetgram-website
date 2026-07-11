@@ -339,8 +339,8 @@ export default function PlatformPage() {
               features that enhance the experience.
             </p>
           </ScrollReveal>
-          <div className="mx-auto max-w-2xl">
-            <Card className="overflow-hidden border-border/50">
+          <div className="mx-auto max-w-2xl overflow-x-auto">
+            <Card className="overflow-hidden border-border/50 min-w-[480px]">
               <div className="grid grid-cols-3 gap-px bg-border/30 text-sm">
                 <div className="bg-card/60 p-4 font-semibold tracking-tight">
                   Feature

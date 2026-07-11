@@ -48,7 +48,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-white/[0.04] bg-gradient-to-b from-transparent to-background">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:py-20 sm:px-6 lg:px-8">
         {/* ── Brand + Description + Download ── */}
         <div className="flex flex-col items-center gap-8 mb-16 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-lg text-center lg:text-left">
@@ -89,7 +89,7 @@ export function Footer() {
         </div>
 
         {/* ── Feature Highlights ── */}
-        <div className="mb-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-14 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           {footerFeatures.map((feature, i) => {
             const Icon = featureIcons[i];
             const iconMotion = featureIconsMotion[i];
@@ -183,7 +183,7 @@ export function Footer() {
         </div>
 
         {/* ── Legal Notice Card ── */}
-        <div className="mt-8 rounded-2xl border border-white/[0.06] bg-[#0B0B0F]/80 backdrop-blur-sm shadow-[0_1px_8px_rgba(0,0,0,0.3)] p-6 sm:p-8 transition-all duration-300 hover:shadow-[0_2px_20px_rgba(255,255,255,0.02)] hover:border-white/[0.08]">
+        <div className="mt-8 rounded-2xl border border-white/[0.06] bg-[#0B0B0F]/80 backdrop-blur-sm shadow-[0_1px_8px_rgba(0,0,0,0.3)] p-5 sm:p-8 transition-all duration-300 hover:shadow-[0_2px_20px_rgba(255,255,255,0.02)] hover:border-white/[0.08]">
           <div className="flex items-center gap-2.5 mb-4">
             <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/[0.04] border border-white/[0.06]">
               <ShieldCheck className="h-3.5 w-3.5 text-white/60" />

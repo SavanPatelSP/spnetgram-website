@@ -40,7 +40,7 @@ function PremiumModal({
   const CatIcon = resolveCategoryIcon(category.id);
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto pt-8 pb-16 sm:pt-16 px-4">
+    <div className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto pt-4 pb-16 sm:pt-16 px-3 sm:px-4">
       <div className="fixed inset-0 bg-black/60 backdrop-blur-md" onClick={onClose} />
       <div className="relative z-10 w-full max-w-6xl">
         {/* Modal header */}

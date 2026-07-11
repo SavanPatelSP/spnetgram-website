@@ -70,8 +70,8 @@ export function Hero() {
         <div className="absolute inset-0 grid-pattern opacity-30" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20 sm:pt-40 sm:pb-32">
-        <div className="grid items-center gap-16 justify-items-center lg:justify-items-start lg:grid-cols-2 lg:gap-24">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:pt-40 sm:pb-32">
+        <div className="grid items-center gap-12 lg:gap-24 justify-items-center lg:justify-items-start lg:grid-cols-2">
           {/* Left content */}
           <div className="relative text-center lg:text-left">
             {/* Badge */}
@@ -86,7 +86,7 @@ export function Hero() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.04em] leading-[0.95] animate-fade-in-up">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.04em] leading-[0.95] animate-fade-in-up">
               <span className="text-foreground">Build.</span>
               <br />
               <span className="text-foreground/90">Connect.</span>
@@ -159,25 +159,25 @@ export function Hero() {
               </div>
             </div>
             {/* Middle left */}
-            <div className="absolute top-[35%] -left-6 sm:-left-8 md:-left-10 lg:-left-12 z-20 animate-float-drift-3">
+            <div className="absolute top-[35%] -left-6 sm:-left-8 md:-left-10 lg:-left-12 z-20 animate-float-drift-3 hidden sm:block">
               <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/15 to-purple-600/5 backdrop-blur-xl shadow-xl shadow-purple-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
                 <Bot className="h-4 w-4 text-purple-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
               </div>
             </div>
             {/* Middle right */}
-            <div className="absolute top-[30%] -right-6 sm:-right-8 md:-right-10 lg:-right-12 z-20 animate-float-drift-1" style={{ animationDelay: "0.8s" }}>
+            <div className="absolute top-[30%] -right-6 sm:-right-8 md:-right-10 lg:-right-12 z-20 animate-float-drift-1 hidden sm:block" style={{ animationDelay: "0.8s" }}>
               <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-pink-500/20 bg-gradient-to-br from-pink-500/15 to-pink-600/5 backdrop-blur-xl shadow-xl shadow-pink-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-pink-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
                 <Palette className="h-4 w-4 text-pink-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
               </div>
             </div>
             {/* Bottom left */}
-            <div className="absolute top-[65%] -left-4 sm:-left-6 md:-left-8 lg:-left-10 z-20 animate-float-drift-2" style={{ animationDelay: "1.2s" }}>
+            <div className="absolute top-[65%] -left-4 sm:-left-6 md:-left-8 lg:-left-10 z-20 animate-float-drift-2 hidden sm:block" style={{ animationDelay: "1.2s" }}>
               <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/15 to-amber-600/5 backdrop-blur-xl shadow-xl shadow-amber-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-amber-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
                 <Gem className="h-4 w-4 text-amber-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
               </div>
             </div>
             {/* Bottom right */}
-            <div className="absolute top-[60%] -right-4 sm:-right-6 md:-right-8 lg:-right-10 z-20 animate-float-drift-3" style={{ animationDelay: "1.6s" }}>
+            <div className="absolute top-[60%] -right-4 sm:-right-6 md:-right-8 lg:-right-10 z-20 animate-float-drift-3 hidden sm:block" style={{ animationDelay: "1.6s" }}>
               <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/15 to-cyan-600/5 backdrop-blur-xl shadow-xl shadow-cyan-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
                 <Globe className="h-4 w-4 text-cyan-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
               </div>

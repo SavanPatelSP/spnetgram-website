@@ -510,6 +510,24 @@ body {
   animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* ── Mobile Responsive Utilities ── */
+@media (max-width: 639px) {
+  .sm\:hidden-mobile {
+    display: none !important;
+  }
+  .mobile-card-center {
+    text-align: center !important;
+    align-items: center !important;
+  }
+}
+
+/* Prevent text overflow on mobile */
+@media (max-width: 480px) {
+  .mobile-text-balance {
+    text-wrap: balance;
+  }
+}
+
 /* ── Reduced Motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,
