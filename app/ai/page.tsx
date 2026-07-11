@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { CTASection } from "@/components/cta-section";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   Bot,
   Sparkles,
@@ -115,6 +116,8 @@ export default function AIPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       {/* ── Current AI Capabilities ── */}
       <section className="border-t border-border/50 py-24">

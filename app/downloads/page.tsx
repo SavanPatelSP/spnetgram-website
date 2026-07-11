@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { CTASection } from "@/components/cta-section";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   Download,
   Smartphone,
@@ -195,6 +196,8 @@ export default function DownloadsPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       {/* ── Stable & Beta Releases ── */}
       <section className="border-t border-border/50 py-24">

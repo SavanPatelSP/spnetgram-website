@@ -14,6 +14,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { StatusDashboard } from "@/components/status-dashboard";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -183,6 +184,8 @@ export function StatusPageContent() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       <section className="border-t border-border/50 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

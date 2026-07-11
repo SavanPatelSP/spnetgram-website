@@ -4,6 +4,7 @@ import * as React from "react";
 import { Newspaper } from "lucide-react";
 import { NewsroomGrid } from "@/components/newsroom-grid";
 import { CTASection } from "@/components/cta-section";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { useArticles } from "@/hooks/use-news";
 import { DataLoader } from "@/components/ui/loaders/data-loader";
 
@@ -56,6 +57,8 @@ export function NewsroomPageContent() {
               </div>
             </div>
           </section>
+
+          <Breadcrumbs />
 
           {featured && (
             <section className="border-t border-border/50 py-12">

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Cookie, ChevronRight, Mail, ArrowRight, Settings } from "lucide-react";
+import { Cookie, Mail, ArrowRight, Settings } from "lucide-react";
+import { siteConfig } from "@/config/site";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
     title: "Cookie Policy — SP NET GRAM",
     description:
       "Detailed information about cookies and tracking technologies used by SP NET GRAM and how to manage your preferences.",
-    url: "https://spnetgram.sp-net.in/cookies",
+    url: `${siteConfig.url}/cookies`,
     type: "website",
   },
 };
@@ -187,20 +189,7 @@ export default function CookiesPage() {
         </div>
       </section>
 
-      {/* ── Breadcrumbs ── */}
-      <div className="border-t border-border/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
-          <nav className="flex items-center gap-2 text-xs text-muted-foreground/50">
-            <Link href="/" className="hover:text-foreground/70 transition-colors">
-              Home
-            </Link>
-            <ChevronRight className="h-3 w-3" />
-            <Link href="/cookies" className="text-foreground/70">
-              Cookie Policy
-            </Link>
-          </nav>
-        </div>
-      </div>
+      <Breadcrumbs />
 
       {/* ── Content ── */}
       <section className="py-20">

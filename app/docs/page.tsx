@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { CTASection } from "@/components/cta-section";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   Book,
   Sparkles,
@@ -182,6 +183,8 @@ export default function DocsPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       {/* ── Doc Sections Grid ── */}
       <section className="border-t border-border/50 py-24">

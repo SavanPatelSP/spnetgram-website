@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import {
   Mail,
-  ChevronRight,
   MessageSquare,
   Building2,
   HeadphonesIcon,
@@ -31,7 +30,9 @@ import { PremiumIcon } from "@/components/premium-icon";
 import { ContactEmailCards } from "@/components/contact-email-cards";
 import { SupportContactSection } from "@/components/support-contact-section";
 import { ConnectWithUsSection } from "@/components/connect-with-us-section";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     title: "Contact — SP NET GRAM",
     description:
       "Contact SP NET INC for support, business inquiries, partnerships, media, and general questions about SP NET GRAM.",
-    url: "https://spnetgram.sp-net.in/contact",
+    url: `${siteConfig.url}/contact`,
     type: "website",
   },
 };
@@ -164,20 +165,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ── Breadcrumbs ── */}
-      <div className="border-t border-border/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
-          <nav className="flex items-center gap-2 text-xs text-muted-foreground/50">
-            <Link href="/" className="hover:text-foreground/70 transition-colors">
-              Home
-            </Link>
-            <ChevronRight className="h-3 w-3" />
-            <Link href="/contact" className="text-foreground/70">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </div>
+      <Breadcrumbs />
 
       {/* ── Introduction ── */}
       <section className="py-16">
@@ -588,7 +576,7 @@ export default function ContactPage() {
                         Official Website
                       </p>
                       <a
-                        href="https://spnetgram.sp-net.in"
+                        href={siteConfig.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
@@ -604,7 +592,7 @@ export default function ContactPage() {
                     <div>
                       <p className="font-semibold tracking-tight">Downloads</p>
                       <a
-                        href="https://spnetgram.sp-net.in/downloads"
+                        href={`${siteConfig.url}/downloads`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"

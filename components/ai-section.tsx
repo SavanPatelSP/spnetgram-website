@@ -53,7 +53,7 @@ export function AISection() {
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* AI visualization */}
           <ScrollReveal delay={100}>
             <div className="relative rounded-2xl border border-purple-500/15 bg-gradient-to-br from-purple-500/[0.04] to-blue-500/[0.02] p-8 sm:p-10 overflow-hidden min-h-[400px] flex items-center">

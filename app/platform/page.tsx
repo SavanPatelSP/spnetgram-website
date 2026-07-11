@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { CTASection } from "@/components/cta-section";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   Coins,
   Gem,
@@ -201,6 +202,8 @@ export default function PlatformPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       {/* ── Feature Grid ── */}
       <section className="border-t border-border/50 py-24">

@@ -9,6 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import { FAQSection } from "@/components/faq-section";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Card } from "@/components/ui/card";
 import { PremiumIcon } from "@/components/premium-icon";
 import { SupportContactSection } from "@/components/support-contact-section";
@@ -91,6 +92,8 @@ export default function SupportPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       {/* Quick Help Cards */}
       <section className="border-t border-border/50 py-24">

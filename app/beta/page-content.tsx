@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/loaders/skeleton";
 import { ProgressCard } from "@/components/progress-card";
 import { CTASection } from "@/components/cta-section";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { useStatusMetrics } from "@/hooks/use-status-metrics";
 import { useDevelopmentPhases } from "@/hooks/use-development-phases";
 
@@ -95,6 +96,8 @@ export function BetaPageContent() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       <section className="border-t border-border/50 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

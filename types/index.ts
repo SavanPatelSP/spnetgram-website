@@ -1,6 +1,21 @@
+import type { LucideIcon } from "lucide-react";
+
 export interface NavLink {
   label: string;
   href: string;
+}
+
+export interface NavItem {
+  label: string;
+  href: string;
+  description: string;
+  icon: LucideIcon;
+}
+
+export interface NavGroup {
+  id: string;
+  label: string;
+  items: NavItem[];
 }
 
 export interface NewsroomArticle {

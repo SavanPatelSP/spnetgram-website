@@ -116,7 +116,7 @@ export function FeatureBlocks() {
                     <div className={`absolute -inset-4 rounded-3xl bg-gradient-to-br ${block.gradient} blur-2xl opacity-50`} />
                     <div className={`relative rounded-2xl border border-border/30 bg-gradient-to-br ${block.gradient} p-8 sm:p-10 overflow-hidden`}>
                       {/* Abstract visualization */}
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {IconRow.map((f) => {
                           const Icon = f.icon;
                           return (

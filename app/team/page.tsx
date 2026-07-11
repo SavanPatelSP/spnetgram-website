@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { TestimonialsSection } from "@/components/testimonials";
 import { CTASection } from "@/components/cta-section";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Card } from "@/components/ui/card";
 import {
   Users,
@@ -98,6 +99,8 @@ export default function TeamPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       {/* ── Team Profiles ── */}
       <TestimonialsSection />

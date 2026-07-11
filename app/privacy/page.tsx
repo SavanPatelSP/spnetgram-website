@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Shield, ChevronRight, Mail, ArrowRight } from "lucide-react";
+import { Shield, Mail, ArrowRight } from "lucide-react";
+import { siteConfig } from "@/config/site";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
     title: "Privacy Policy — SP NET GRAM",
     description:
       "Comprehensive privacy policy explaining how SP NET GRAM handles your data, protects your privacy, and manages information across our platform.",
-    url: "https://spnetgram.sp-net.in/privacy",
+    url: `${siteConfig.url}/privacy`,
     type: "website",
   },
 };
@@ -271,20 +273,7 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      {/* ── Breadcrumbs ── */}
-      <div className="border-t border-border/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
-          <nav className="flex items-center gap-2 text-xs text-muted-foreground/50">
-            <Link href="/" className="hover:text-foreground/70 transition-colors">
-              Home
-            </Link>
-            <ChevronRight className="h-3 w-3" />
-            <Link href="/privacy" className="text-foreground/70">
-              Privacy Policy
-            </Link>
-          </nav>
-        </div>
-      </div>
+      <Breadcrumbs />
 
       {/* ── Content ── */}
       <section className="py-20">

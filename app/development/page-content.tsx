@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/loaders/skeleton";
 import { CTASection } from "@/components/cta-section";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProgressCard } from "@/components/progress-card";
 import { CheckCircle, GitBranch, Rocket, Target, Code2, Database, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -106,6 +107,8 @@ export function DevelopmentPageContent() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       <section className="border-t border-border/50 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

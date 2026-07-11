@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { CTASection } from "@/components/cta-section";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   Building2,
   Eye,
@@ -151,6 +152,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       {/* ── Mission & Vision ── */}
       <section className="border-t border-border/50 py-24">

@@ -4,6 +4,7 @@ import * as React from "react";
 import { Sparkles, Crown, Check, X, Database, ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { cn } from "@/lib/utils";
 import { usePricingCategories } from "@/hooks/use-pricing";
 import { DataLoader } from "@/components/ui/loaders/data-loader";
@@ -395,6 +396,8 @@ export function ComparePageContent() {
             </p>
           </div>
         </ScrollReveal>
+
+        <Breadcrumbs />
 
         <DataLoader
           query={query}

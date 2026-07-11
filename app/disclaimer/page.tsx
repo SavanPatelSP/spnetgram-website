@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AlertTriangle } from "lucide-react";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Disclaimer",
@@ -26,6 +27,8 @@ export default function DisclaimerPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       <section className="border-t border-border/50 py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">

@@ -18,6 +18,7 @@ import {
 import { Card } from "@/components/ui/card";
 import { CTASection } from "@/components/cta-section";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -156,6 +157,8 @@ export default function ReportBugPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       {/* ── Reporting Guidelines ── */}
       <section className="border-t border-border/50 py-24">

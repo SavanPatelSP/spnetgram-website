@@ -10,11 +10,26 @@ interface ScrollRevealProps {
   threshold?: number;
 }
 
-export function ScrollReveal({ children, className, delay = 0, threshold = 0.08 }: ScrollRevealProps) {
+export function ScrollReveal({ children, className, delay = 0, threshold = 0.1 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [prefersReduced, setPrefersReduced] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReduced(mq.matches);
+
+    const handler = (e: MediaQueryListEvent) => setPrefersReduced(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReduced) {
+      setIsVisible(true);
+      return;
+    }
+
     const el = ref.current;
     if (!el) return;
 
@@ -25,18 +40,22 @@ export function ScrollReveal({ children, className, delay = 0, threshold = 0.08 
           observer.unobserve(el);
         }
       },
-      { threshold, rootMargin: "0px 0px -60px 0px" }
+      { threshold, rootMargin: "0px 0px -80px 0px" }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [delay, threshold]);
+  }, [delay, threshold, prefersReduced]);
+
+  if (prefersReduced) {
+    return <div ref={ref} className={className}>{children}</div>;
+  }
 
   const transitionStyle: React.CSSProperties = {
-    transition: "all 900ms cubic-bezier(0.16, 1, 0.3, 1)",
-    transform: isVisible ? "translateY(0)" : "translateY(32px)",
+    transition: "all 1.1s cubic-bezier(0.16, 1, 0.3, 1)",
+    transform: isVisible ? "translateY(0) scale(1)" : "translateY(40px) scale(0.98)",
     opacity: isVisible ? 1 : 0,
-    filter: isVisible ? "blur(0px)" : "blur(2px)",
+    filter: isVisible ? "blur(0px)" : "blur(4px)",
   };
 
   return (

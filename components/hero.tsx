@@ -58,19 +58,17 @@ const features = [
 
 export function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen overflow-hidden">
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.03] via-transparent to-background" />
-      <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] rounded-full bg-gradient-to-b from-blue-500/[0.05] to-transparent blur-3xl" />
-      <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-purple-500/[0.03] blur-3xl" />
-      <div className="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-amber-500/[0.02] blur-3xl" />
-
-      {/* Animated gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-3xl animate-aurora" />
-      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-amber-500/5 to-blue-500/10 blur-3xl animate-aurora" style={{ animationDelay: "-10s" }} />
-
-      {/* Grid overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-30" />
+    <section id="hero" className="relative min-h-screen">
+      {/* Background layers — clipped individually to prevent overflow */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.03] via-transparent to-background" />
+        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] rounded-full bg-gradient-to-b from-blue-500/[0.05] to-transparent blur-3xl" />
+        <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-purple-500/[0.03] blur-3xl" />
+        <div className="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-amber-500/[0.02] blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-3xl animate-aurora" />
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-amber-500/5 to-blue-500/10 blur-3xl animate-aurora" style={{ animationDelay: "-10s" }} />
+        <div className="absolute inset-0 grid-pattern opacity-30" />
+      </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20 sm:pt-40 sm:pb-32">
         <div className="grid items-center gap-16 justify-items-center lg:justify-items-start lg:grid-cols-2 lg:gap-24">
@@ -140,49 +138,56 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right - Phone mockup */}
-          <div className="relative animate-fade-in overflow-hidden w-full max-w-[400px] lg:max-w-none lg:overflow-visible" style={{ animationDelay: "0.4s" }}>
-            {/* Floating feature badges — hidden on mobile to prevent overflow, visible on md+ */}
-            <div className="hidden md:block">
-              <div className="absolute -top-[84px] ml-[-22px] lg:-top-[134px] lg:ml-[-32px] xl:-top-[180px] xl:ml-[-40px] z-10 flex animate-float-drift-1">
-                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/15 to-blue-600/5 backdrop-blur-xl shadow-xl shadow-blue-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/30 hover:from-blue-500/25 hover:to-blue-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                  <Zap className="h-5 w-5 text-blue-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
-                </div>
-              </div>
-              <div className="absolute top-[15%] ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-2">
-                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/15 to-emerald-600/5 backdrop-blur-xl shadow-xl shadow-emerald-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-emerald-500/30 hover:from-emerald-500/25 hover:to-emerald-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                  <Shield className="h-5 w-5 text-emerald-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
-                </div>
-              </div>
-              <div className="absolute top-[10%] ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-3">
-                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/15 to-purple-600/5 backdrop-blur-xl shadow-xl shadow-purple-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/30 hover:from-purple-500/25 hover:to-purple-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                  <Bot className="h-5 w-5 text-purple-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
-                </div>
-              </div>
-              <div className="absolute top-[45%] ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-1" style={{ animationDelay: "0.8s" }}>
-                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-pink-500/20 bg-gradient-to-br from-pink-500/15 to-pink-600/5 backdrop-blur-xl shadow-xl shadow-pink-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-pink-500/30 hover:from-pink-500/25 hover:to-pink-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                  <Palette className="h-5 w-5 text-pink-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
-                </div>
-              </div>
-              <div className="absolute top-[50%] ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-2" style={{ animationDelay: "1.2s" }}>
-                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/15 to-amber-600/5 backdrop-blur-xl shadow-xl shadow-amber-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-amber-500/30 hover:from-amber-500/25 hover:to-amber-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                  <Gem className="h-5 w-5 text-amber-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
-                </div>
-              </div>
-              <div className="absolute top-[75%] ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-3" style={{ animationDelay: "1.6s" }}>
-                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/15 to-cyan-600/5 backdrop-blur-xl shadow-xl shadow-cyan-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/30 hover:from-cyan-500/25 hover:to-cyan-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                  <Globe className="h-5 w-5 text-cyan-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
-                </div>
-              </div>
-              <div className="absolute top-[80%] ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-1" style={{ animationDelay: "2s" }}>
-                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/15 to-indigo-600/5 backdrop-blur-xl shadow-xl shadow-indigo-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-indigo-500/30 hover:from-indigo-500/25 hover:to-indigo-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                  <Rocket className="h-5 w-5 text-indigo-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
-                </div>
-              </div>
+          {/* Right - Phone mockup area */}
+          <div className="relative mx-auto w-[280px] sm:w-[320px] md:w-[360px] lg:w-[400px] xl:w-[440px]">
+            {/* Phone */}
+            <div className="animate-fade-in" style={{ animationDelay: "0.4s" }}>
+              <PhoneMockup />
             </div>
 
-            {/* Phone */}
-            <PhoneMockup />
+            {/* Floating feature badges */}
+            {/* Top left */}
+            <div className="absolute -top-4 -left-4 sm:-top-5 sm:-left-5 md:-top-6 md:-left-6 lg:-top-8 lg:-left-8 z-20 animate-float-drift-1">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/15 to-blue-600/5 backdrop-blur-xl shadow-xl shadow-blue-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
+                <Zap className="h-4 w-4 text-blue-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
+              </div>
+            </div>
+            {/* Top right */}
+            <div className="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 md:-top-6 md:-right-6 lg:-top-8 lg:-right-8 z-20 animate-float-drift-2">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/15 to-emerald-600/5 backdrop-blur-xl shadow-xl shadow-emerald-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-emerald-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
+                <Shield className="h-4 w-4 text-emerald-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
+              </div>
+            </div>
+            {/* Middle left */}
+            <div className="absolute top-[35%] -left-6 sm:-left-8 md:-left-10 lg:-left-12 z-20 animate-float-drift-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/15 to-purple-600/5 backdrop-blur-xl shadow-xl shadow-purple-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
+                <Bot className="h-4 w-4 text-purple-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
+              </div>
+            </div>
+            {/* Middle right */}
+            <div className="absolute top-[30%] -right-6 sm:-right-8 md:-right-10 lg:-right-12 z-20 animate-float-drift-1" style={{ animationDelay: "0.8s" }}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-pink-500/20 bg-gradient-to-br from-pink-500/15 to-pink-600/5 backdrop-blur-xl shadow-xl shadow-pink-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-pink-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
+                <Palette className="h-4 w-4 text-pink-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
+              </div>
+            </div>
+            {/* Bottom left */}
+            <div className="absolute top-[65%] -left-4 sm:-left-6 md:-left-8 lg:-left-10 z-20 animate-float-drift-2" style={{ animationDelay: "1.2s" }}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/15 to-amber-600/5 backdrop-blur-xl shadow-xl shadow-amber-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-amber-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
+                <Gem className="h-4 w-4 text-amber-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
+              </div>
+            </div>
+            {/* Bottom right */}
+            <div className="absolute top-[60%] -right-4 sm:-right-6 md:-right-8 lg:-right-10 z-20 animate-float-drift-3" style={{ animationDelay: "1.6s" }}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/15 to-cyan-600/5 backdrop-blur-xl shadow-xl shadow-cyan-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
+                <Globe className="h-4 w-4 text-cyan-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
+              </div>
+            </div>
+            {/* Bottom center */}
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 z-20 animate-float-drift-1" style={{ animationDelay: "2s" }}>
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/15 to-indigo-600/5 backdrop-blur-xl shadow-xl shadow-indigo-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-indigo-500/30 md:h-14 md:w-14 lg:h-16 lg:w-16">
+                <Rocket className="h-4 w-4 text-indigo-400 md:h-5 md:w-5 lg:h-6 lg:w-6" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

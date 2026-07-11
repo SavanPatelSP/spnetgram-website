@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Scale, ChevronRight, Mail, ArrowRight } from "lucide-react";
+import { Scale, Mail, ArrowRight } from "lucide-react";
+import { siteConfig } from "@/config/site";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
     title: "Terms of Service — SP NET GRAM",
     description:
       "Comprehensive terms of service covering your rights, responsibilities, and the conditions governing use of SP NET GRAM.",
-    url: "https://spnetgram.sp-net.in/terms",
+    url: `${siteConfig.url}/terms`,
     type: "website",
   },
 };
@@ -292,20 +294,7 @@ export default function TermsPage() {
         </div>
       </section>
 
-      {/* ── Breadcrumbs ── */}
-      <div className="border-t border-border/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
-          <nav className="flex items-center gap-2 text-xs text-muted-foreground/50">
-            <Link href="/" className="hover:text-foreground/70 transition-colors">
-              Home
-            </Link>
-            <ChevronRight className="h-3 w-3" />
-            <Link href="/terms" className="text-foreground/70">
-              Terms of Service
-            </Link>
-          </nav>
-        </div>
-      </div>
+      <Breadcrumbs />
 
       {/* ── Content ── */}
       <section className="py-20">

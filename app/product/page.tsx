@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { CTASection } from "@/components/cta-section";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   Rocket,
   MessageCircle,
@@ -221,6 +222,8 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       {/* ── Stats Bar ── */}
       <section className="border-t border-border/50 bg-accent/[0.03] py-12">

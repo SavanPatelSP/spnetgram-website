@@ -19,6 +19,7 @@ import {
   Bot,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 function StatusBar() {
   return (
@@ -361,98 +362,100 @@ export function ScreenshotShowcase() {
 
   return (
     <section className="border-t border-white/[0.04] bg-accent/[0.02] py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center mb-16">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/[0.08] px-3 py-1 text-xs font-medium backdrop-blur-sm">
-            <MessageSquare className="h-3 w-3 text-blue-300" />
-            <span className="text-blue-300 font-medium">Preview</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
-            See SP NET GRAM in action
-          </h2>
-          <p className="mt-5 text-base sm:text-lg text-muted-foreground/70 leading-relaxed max-w-2xl mx-auto">
-            A premium Telegram client experience. Familiar where it counts, enhanced where it matters.
-          </p>
-        </div>
-
-        <div className="mx-auto max-w-5xl">
-          <div className="flex items-center justify-center gap-1.5 mb-10 flex-wrap">
-            {screens.map((screen, i) => (
-              <button
-                key={screen.id}
-                onClick={() => goTo(i)}
-                className={cn(
-                  "flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-medium transition-all duration-300",
-                  i === activeIndex
-                    ? "bg-foreground text-background shadow-md scale-105"
-                    : "text-muted-foreground/60 hover:text-foreground hover:bg-accent/50"
-                )}
-              >
-                <screen.icon className="h-3 w-3" />
-                <span className="hidden sm:inline">{screen.label}</span>
-              </button>
-            ))}
+      <ScrollReveal>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/[0.08] px-3 py-1 text-xs font-medium backdrop-blur-sm">
+              <MessageSquare className="h-3 w-3 text-blue-300" />
+              <span className="text-blue-300 font-medium">Preview</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1]">
+              See SP NET GRAM in action
+            </h2>
+            <p className="mt-5 text-base sm:text-lg text-muted-foreground/70 leading-relaxed max-w-2xl mx-auto">
+              A premium Telegram client experience. Familiar where it counts, enhanced where it matters.
+            </p>
           </div>
 
-          <div className="relative px-0 sm:px-16">
-            <div className="mx-auto w-[260px] sm:w-[290px] md:w-[330px]">
-              <div className="absolute -inset-1 rounded-[2.8rem] bg-gradient-to-b from-zinc-600 via-zinc-700 to-zinc-800 opacity-60 blur-sm" />
-              <div className="relative rounded-[2.5rem] border-[2.5px] border-zinc-600 bg-zinc-900 p-[5px] shadow-2xl shadow-black/40">
-                <div className="absolute left-1/2 top-0 z-20 h-6 w-[120px] -translate-x-1/2 rounded-b-2xl bg-zinc-900">
-                  <div className="mx-auto h-3 w-[90px] rounded-b-xl bg-zinc-800" />
-                </div>
-                <div className="absolute left-1/2 top-[10px] z-30 h-[6px] w-[6px] -translate-x-[36px] rounded-full bg-zinc-800" />
-                <div className="absolute right-[22px] top-[12px] z-30 h-[4px] w-[48px] rounded-full bg-zinc-800" />
-                <div className="device-reflection overflow-hidden rounded-[1.75rem] bg-[#1a1a2e] min-h-[470px]">
-                  <div
-                    key={activeIndex}
-                    className="animate-scale-fade"
-                  >
-                    <activeScreen.render />
+          <div className="mx-auto max-w-5xl">
+            <div className="flex items-center justify-center gap-1.5 mb-10 flex-wrap">
+              {screens.map((screen, i) => (
+                <button
+                  key={screen.id}
+                  onClick={() => goTo(i)}
+                  className={cn(
+                    "flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-medium transition-all duration-300",
+                    i === activeIndex
+                      ? "bg-foreground text-background shadow-md scale-105"
+                      : "text-muted-foreground/60 hover:text-foreground hover:bg-accent/50"
+                  )}
+                >
+                  <screen.icon className="h-3 w-3" />
+                  <span className="hidden sm:inline">{screen.label}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="relative px-0 sm:px-16">
+              <div className="mx-auto w-[260px] sm:w-[290px] md:w-[330px]">
+                <div className="absolute -inset-1 rounded-[2.8rem] bg-gradient-to-b from-zinc-600 via-zinc-700 to-zinc-800 opacity-60 blur-sm" />
+                <div className="relative rounded-[2.5rem] border-[2.5px] border-zinc-600 bg-zinc-900 p-[5px] shadow-2xl shadow-black/40">
+                  <div className="absolute left-1/2 top-0 z-20 h-6 w-[120px] -translate-x-1/2 rounded-b-2xl bg-zinc-900">
+                    <div className="mx-auto h-3 w-[90px] rounded-b-xl bg-zinc-800" />
+                  </div>
+                  <div className="absolute left-1/2 top-[10px] z-30 h-[6px] w-[6px] -translate-x-[36px] rounded-full bg-zinc-800" />
+                  <div className="absolute right-[22px] top-[12px] z-30 h-[4px] w-[48px] rounded-full bg-zinc-800" />
+                  <div className="device-reflection overflow-hidden rounded-[1.75rem] bg-[#1a1a2e] min-h-[470px]">
+                    <div
+                      key={activeIndex}
+                      className="animate-scale-fade"
+                    >
+                      <activeScreen.render />
+                    </div>
                   </div>
                 </div>
               </div>
+
+              <button
+                onClick={prev}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-0 sm:-translate-x-5 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-muted-foreground hover:text-foreground hover:border-border/60 shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
+                aria-label="Previous screen"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                onClick={next}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-0 sm:translate-x-5 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-muted-foreground hover:text-foreground hover:border-border/60 shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
+                aria-label="Next screen"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
             </div>
 
-            <button
-              onClick={prev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-0 sm:-translate-x-5 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-muted-foreground hover:text-foreground hover:border-border/60 shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
-              aria-label="Previous screen"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              onClick={next}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-0 sm:translate-x-5 flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-muted-foreground hover:text-foreground hover:border-border/60 shadow-md backdrop-blur-sm transition-all duration-200 hover:scale-105 active:scale-95"
-              aria-label="Next screen"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
+            <div className="mt-8 flex justify-center gap-2">
+              {screens.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i)}
+                  className={cn(
+                    "rounded-full transition-all duration-500",
+                    i === activeIndex
+                      ? "w-10 h-2 bg-foreground"
+                      : "w-2 h-2 bg-muted-foreground/20 hover:bg-muted-foreground/40"
+                  )}
+                  aria-label={`Go to screen ${i + 1}`}
+                />
+              ))}
+            </div>
 
-          <div className="mt-8 flex justify-center gap-2">
-            {screens.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => goTo(i)}
-                className={cn(
-                  "rounded-full transition-all duration-500",
-                  i === activeIndex
-                    ? "w-10 h-2 bg-foreground"
-                    : "w-2 h-2 bg-muted-foreground/20 hover:bg-muted-foreground/40"
-                )}
-                aria-label={`Go to screen ${i + 1}`}
-              />
-            ))}
-          </div>
-
-          <div className="mt-6 text-center">
-            <p className="text-xs text-muted-foreground/40">
-              App interface previews. Actual design may vary during development.
-            </p>
+            <div className="mt-6 text-center">
+              <p className="text-xs text-muted-foreground/40">
+                App interface previews. Actual design may vary during development.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

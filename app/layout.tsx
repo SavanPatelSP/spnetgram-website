@@ -22,7 +22,6 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [
     "SP NET GRAM",
-    "SP NET GRAM",
     "messaging",
     "privacy",
     "AI messenger",
@@ -60,13 +59,39 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    applicationCategory: "CommunicationApplication",
+    operatingSystem: "Android",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    author: {
+      "@type": "Organization",
+      name: "SP NET INC",
+      url: "https://sp-net.in",
+    },
+  };
+
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.variable} min-h-screen bg-background text-foreground antialiased font-sans`}>
         <AppProvider>
           <ToastProvider>
             <Navbar />
-            <main className="flex min-h-screen flex-col">{children}</main>
+            <main id="main-content" className="flex min-h-screen flex-col">{children}</main>
             <Footer />
           </ToastProvider>
         </AppProvider>

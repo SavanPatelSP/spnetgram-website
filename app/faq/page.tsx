@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card } from "@/components/ui/card";
 import { CTASection } from "@/components/cta-section";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import {
   HelpCircle,
   MessageCircle,
@@ -211,6 +212,8 @@ export default function FAQPage() {
           </div>
         </div>
       </section>
+
+      <Breadcrumbs />
 
       {/* ── FAQ Categories ── */}
       {faqCategories.map((category, catIndex) => {
