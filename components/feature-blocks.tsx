@@ -112,7 +112,7 @@ export function FeatureBlocks() {
 
                 {/* Visual side */}
                 <ScrollReveal delay={100}>
-                  <div className="relative">
+                  <div className="relative overflow-hidden">
                     <div className={`absolute -inset-4 rounded-3xl bg-gradient-to-br ${block.gradient} blur-2xl opacity-50`} />
                     <div className={`relative rounded-2xl border border-border/30 bg-gradient-to-br ${block.gradient} p-8 sm:p-10 overflow-hidden`}>
                       {/* Abstract visualization */}

@@ -216,7 +216,7 @@ export function ProductCards() {
               <ScrollReveal key={product.id} delay={i * 80}>
                 <Link href={product.href} className="group block h-full">
                   <div
-                    className={`relative flex h-full flex-col rounded-2xl border border-white/[0.06] bg-gradient-to-br ${product.gradient} p-6 transition-all duration-500 hover:border-white/[0.12] card-depth`}
+                    className={`relative flex h-full flex-col rounded-2xl border border-white/[0.06] bg-gradient-to-br ${product.gradient} p-6 transition-all duration-500 hover:border-white/[0.12] card-depth overflow-hidden`}
                   >
                     {/* Glow */}
                     <div
