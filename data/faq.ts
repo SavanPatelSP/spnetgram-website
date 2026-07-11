@@ -82,7 +82,7 @@ const faqs: FAQItem[] = [
     id: "faq-8",
     question: "How can I contact support?",
     answer:
-      "You can reach us through our support channels via email at support@spnetgram.com. Premium subscribers will have access to priority support with faster response times.",
+      "You can reach us through our support channels via email at support.spnetgram@sp-net.in. Premium subscribers will have access to priority support with faster response times.",
     category: "Support",
     displayOrder: 7,
     active: true,

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { AppProvider } from "@/providers/app-provider";
+import { ToastProvider } from "@/components/ui/toast";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import "./globals.css";
@@ -63,9 +64,11 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${inter.variable} min-h-screen bg-background text-foreground antialiased font-sans`}>
         <AppProvider>
-          <Navbar />
-          <main className="flex min-h-screen flex-col">{children}</main>
-          <Footer />
+          <ToastProvider>
+            <Navbar />
+            <main className="flex min-h-screen flex-col">{children}</main>
+            <Footer />
+          </ToastProvider>
         </AppProvider>
       </body>
     </html>

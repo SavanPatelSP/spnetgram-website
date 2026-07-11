@@ -474,7 +474,7 @@ export function getFAQItems(): FAQItem[] {
     {
       question: "How can I contact support?",
       answer:
-        "You can reach us through our support channels via email at support@spnetgram.com. Premium subscribers will have access to priority support with faster response times.",
+        "You can reach us through our support channels via email at support.spnetgram@sp-net.in. Premium subscribers will have access to priority support with faster response times.",
       category: "Support",
     },
   ];
@@ -642,7 +642,7 @@ export function getTeamMembers(): TeamMember[] {
       socialLinks: JSON.stringify([
         { platform: "linkedin", url: "https://linkedin.com/in/savanpatel" },
         { platform: "github", url: "https://github.com/savanpatel" },
-        { platform: "email", url: "mailto:savan@spnetgram.com" },
+        { platform: "email", url: "mailto:savan@sp-net.in" },
       ]),
       displayOrder: 1,
       active: true,

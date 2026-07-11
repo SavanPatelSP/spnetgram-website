@@ -80,7 +80,7 @@ export default function DisclaimerPage() {
             <div>
               <h2 className="text-2xl font-bold tracking-tight mb-4">6. Contact</h2>
               <p className="text-muted-foreground leading-relaxed">
-                For questions about this Disclaimer, please contact us at support@spnetgram.com.
+                For questions about this Disclaimer, please contact us at <a href="mailto:support.spnetgram@sp-net.in" className="text-foreground underline underline-offset-4 hover:text-foreground/80 transition-colors">support.spnetgram@sp-net.in</a>.
               </p>
             </div>
           </div>

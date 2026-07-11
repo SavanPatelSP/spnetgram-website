@@ -307,12 +307,12 @@ export function PremiumPageContent() {
                   </p>
                 </div>
               </div>
-              <Link
-                href="/support"
+              <a
+                href="mailto:support.spnetgram@sp-net.in"
                 className="inline-flex items-center justify-center whitespace-nowrap rounded-xl border border-border bg-transparent px-6 py-3 text-sm font-medium transition-all duration-300 hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.97] shrink-0"
               >
                 Contact Support
-              </Link>
+              </a>
             </div>
           </div>
         </ScrollReveal>

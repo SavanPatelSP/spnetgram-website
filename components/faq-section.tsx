@@ -15,7 +15,7 @@ export function FAQSection() {
   const query = useFAQs();
 
   return (
-    <section className="border-t border-white/[0.04] py-24 sm:py-32">
+    <section id="faq" className="border-t border-white/[0.04] py-24 sm:py-32 scroll-mt-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -82,7 +82,7 @@ export function FAQSection() {
         <ScrollReveal delay={200}>
           <div className="mt-12 text-center">
             <p className="text-sm text-muted-foreground/40 mb-4">Still have questions?</p>
-            <Link href="/support">
+            <Link href="/support#contact-support">
               <Button variant="outline" size="lg">
                 Contact Support
               </Button>
