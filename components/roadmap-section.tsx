@@ -183,7 +183,7 @@ export function RoadmapSection() {
             <div className="inline-flex items-center gap-2 rounded-lg border border-white/[0.04] bg-white/[0.02] px-4 py-2.5">
               <Clock className="h-3.5 w-3.5 text-muted-foreground/30" />
               <span className="text-xs text-muted-foreground/30">
-                Timeline is managed in SP NET ADMIN and subject to change.
+                Timeline is managed in SP NET CONTROL CENTER and subject to change.
               </span>
             </div>
           </div>

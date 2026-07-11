@@ -63,7 +63,7 @@ const products: ProductData[] = [
   {
     id: "admin",
     icon: ShieldCheck,
-    title: "SP NET ADMIN",
+    title: "SP NET GRAM ADMIN OS",
     subtitle: "Enterprise administration, redesigned",
     description: "A complete enterprise administration platform featuring licensing, premium management, coins & gems economy, organizations, and team management.",
     features: [
@@ -209,7 +209,7 @@ export function ProductCards() {
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product, i) => {
             const Icon = product.icon;
             return (

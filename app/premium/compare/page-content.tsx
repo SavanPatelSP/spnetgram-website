@@ -391,7 +391,7 @@ export function ComparePageContent() {
               <span className="text-muted-foreground/40">Find your fit.</span>
             </h1>
             <p className="mt-5 text-base sm:text-lg text-muted-foreground/60 leading-relaxed max-w-2xl mx-auto">
-              Side-by-side feature comparison across every tier. Pricing is managed in SP NET ADMIN and synced live.
+              Side-by-side feature comparison across every tier. Pricing is managed in SP NET CONTROL CENTER and synced live.
             </p>
           </div>
         </ScrollReveal>
@@ -401,7 +401,7 @@ export function ComparePageContent() {
           empty={
             <div className="text-center py-20">
               <Database className="h-12 w-12 text-muted-foreground/20 mx-auto mb-4" />
-              <p className="text-sm text-muted-foreground/40">Plans are being configured in SP NET ADMIN.</p>
+              <p className="text-sm text-muted-foreground/40">Plans are being configured in SP NET CONTROL CENTER.</p>
             </div>
           }
         >
@@ -456,7 +456,7 @@ export function ComparePageContent() {
         </ScrollReveal>
 
         <p className="text-center text-xs text-muted-foreground/30 mt-12">
-          Pricing is managed entirely through SP NET ADMIN. Data is fetched live from the backend.
+          Pricing is managed entirely through SP NET CONTROL CENTER. Data is fetched live from the backend.
         </p>
       </div>
     </div>

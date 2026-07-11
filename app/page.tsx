@@ -16,7 +16,6 @@ import { RoadmapSection } from "@/components/roadmap-section";
 import { FAQSection } from "@/components/faq-section";
 import { DownloadSection } from "@/components/download-section";
 import { ScreenshotShowcase } from "@/components/screenshot-showcase";
-
 export const metadata: Metadata = {
   title: "SP NET GRAM — The Future of Messaging",
   description:

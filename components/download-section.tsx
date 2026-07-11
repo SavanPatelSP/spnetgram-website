@@ -127,7 +127,7 @@ export function DownloadSection() {
               </Button>
             </Link>
             <p className="mt-4 text-xs text-muted-foreground/30">
-              Download data managed in SP NET ADMIN. Versions, changelogs, and release notes are updated automatically.
+              Download data managed in SP NET CONTROL CENTER. Versions, changelogs, and release notes are updated automatically.
             </p>
           </div>
         </ScrollReveal>

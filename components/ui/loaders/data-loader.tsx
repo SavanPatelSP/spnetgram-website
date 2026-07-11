@@ -77,7 +77,7 @@ export function DataLoader<T>({
             </div>
             <h3 className="text-lg font-semibold tracking-tight mb-2">No content yet</h3>
             <p className="text-sm text-muted-foreground/50 max-w-md leading-relaxed">
-              This section will be populated from SP NET ADMIN when content is published.
+              This section will be populated from SP NET CONTROL CENTER when content is published.
             </p>
           </div>
         </div>

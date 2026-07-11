@@ -78,7 +78,7 @@ export function FeatureBlocks() {
               <div className={`grid items-center gap-12 lg:gap-20 ${block.reversed ? "lg:grid-flow-dense" : ""} lg:grid-cols-2`}>
                 {/* Text side */}
                 <ScrollReveal>
-                  <div>
+                  <div className="text-center lg:text-left">
                     <Badge variant={block.badgeVariant} className="mb-5">
                       {block.badge}
                     </Badge>
@@ -87,7 +87,7 @@ export function FeatureBlocks() {
                       <br />
                       <span className="text-muted-foreground/40">{block.highlight}</span>
                     </h2>
-                    <p className="mt-5 text-base sm:text-lg text-muted-foreground/60 leading-relaxed max-w-lg">
+                    <p className="mt-5 text-base sm:text-lg text-muted-foreground/60 leading-relaxed max-w-lg mx-auto lg:mx-0">
                       {block.description}
                     </p>
                     <div className="mt-10 space-y-5">

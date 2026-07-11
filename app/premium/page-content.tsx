@@ -195,7 +195,7 @@ export function PremiumPageContent() {
             </h1>
             <p className="mt-5 text-base sm:text-lg text-muted-foreground/60 leading-relaxed max-w-2xl mx-auto">
               Premium plans, Gems packages, Coins bundles, licenses, and organization plans — all managed
-              through SP NET ADMIN.
+              through SP NET CONTROL CENTER.
             </p>
           </div>
         </ScrollReveal>
@@ -205,7 +205,7 @@ export function PremiumPageContent() {
           empty={
             <div className="text-center py-20">
               <Database className="h-12 w-12 text-muted-foreground/20 mx-auto mb-4" />
-              <p className="text-sm text-muted-foreground/40">Plans are being configured in SP NET ADMIN.</p>
+              <p className="text-sm text-muted-foreground/40">Plans are being configured in SP NET CONTROL CENTER.</p>
             </div>
           }
         >
@@ -303,7 +303,7 @@ export function PremiumPageContent() {
                 <div>
                   <h3 className="text-base font-semibold tracking-tight">Need help choosing?</h3>
                   <p className="text-sm text-muted-foreground/50 mt-1 max-w-md">
-                    Our team can help you find the right plan for your needs. Pricing is managed in SP NET ADMIN and synced live.
+                    Our team can help you find the right plan for your needs. Pricing is managed in SP NET CONTROL CENTER and synced live.
                   </p>
                 </div>
               </div>
@@ -318,7 +318,7 @@ export function PremiumPageContent() {
         </ScrollReveal>
 
         <p className="text-center text-xs text-muted-foreground/30 mt-12">
-          Pricing is managed entirely through SP NET ADMIN. Data is fetched live from the backend.
+          Pricing is managed entirely through SP NET CONTROL CENTER. Data is fetched live from the backend.
         </p>
       </div>
     </div>

@@ -37,6 +37,18 @@ export default function DisclaimerPage() {
               </p>
             </div>
 
+            <div className="rounded-xl border border-border/50 bg-accent/[0.03] p-6">
+              <h2 className="text-sm font-semibold tracking-wide uppercase text-muted-foreground mb-3">Third-Party Notice</h2>
+              <p className="text-sm text-muted-foreground/70 leading-[1.8]">
+                SP NET GRAM is an independent third-party Telegram client developed by SP NET INC.
+                It enhances the Telegram experience with additional client features, AI services,
+                premium memberships, and an expanding ecosystem developed by SP NET INC.
+                Telegram and all related trademarks, product names, and logos are the property
+                of their respective owners. SP NET GRAM is not affiliated with, endorsed by,
+                or sponsored by Telegram.
+              </p>
+            </div>
+
             <div>
               <h2 className="text-2xl font-bold tracking-tight mb-4">2. No Affiliation</h2>
               <p className="text-muted-foreground leading-relaxed">

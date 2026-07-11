@@ -10,8 +10,8 @@ export function Footer() {
     <footer className="border-t border-white/[0.04] bg-gradient-to-b from-transparent to-background">
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         {/* Top section with brand */}
-        <div className="flex flex-col lg:flex-row justify-between gap-12 mb-16">
-          <div className="max-w-sm">
+        <div className="flex flex-col items-center lg:items-start lg:flex-row justify-between gap-12 mb-16">
+          <div className="max-w-sm text-center lg:text-left">
             <Link href="/" className="group inline-flex items-center gap-2.5">
               <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl transition-transform duration-300 group-hover:scale-105">
                 <Image
@@ -36,7 +36,7 @@ export function Footer() {
               Speed, privacy, AI, and premium features — all in one platform. Built for communities,
               creators, and businesses.
             </p>
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-2">
               {["Speed", "Privacy", "AI", "Premium"].map((tag) => (
                 <span
                   key={tag}
@@ -61,7 +61,7 @@ export function Footer() {
         </div>
 
         {/* Links grid */}
-        <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-6">
           {footerSections.map((section) => (
             <div key={section.title}>
               <h3 className="mb-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground/50">
@@ -84,7 +84,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-white/[0.04] pt-8 md:flex-row">
+        <div className="mt-16 flex flex-col items-center gap-6 border-t border-white/[0.04] pt-8 sm:flex-row sm:justify-between">
           <p className="text-xs text-muted-foreground/50">
             &copy; {currentYear} {siteConfig.name}. All Rights Reserved. SP NET INC.
           </p>
@@ -106,10 +106,13 @@ export function Footer() {
 
         {/* Disclaimer */}
         <div className="mt-8 rounded-xl border border-white/[0.04] bg-white/[0.02] p-5">
-          <p className="text-[10px] text-muted-foreground/40 leading-relaxed">
-            SP NET GRAM is an independent communication platform. All trademarks, including product names and logos,
-            are the property of their respective owners. SP NET GRAM provides enhanced features, AI services,
-            premium memberships, and ecosystem capabilities built on proprietary infrastructure.
+          <p className="text-[11px] text-muted-foreground/50 leading-[1.7]">
+            SP NET GRAM is an independent third-party Telegram client developed by SP NET INC.
+            It enhances the Telegram experience with additional client features, AI services,
+            premium memberships, and an expanding ecosystem developed by SP NET INC.
+            Telegram and all related trademarks, product names, and logos are the property
+            of their respective owners. SP NET GRAM is not affiliated with, endorsed by,
+            or sponsored by Telegram.
           </p>
         </div>
       </div>

@@ -73,9 +73,9 @@ export function Hero() {
       <div className="absolute inset-0 grid-pattern opacity-30" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20 sm:pt-40 sm:pb-32">
-        <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
+        <div className="grid items-center gap-16 justify-items-center lg:justify-items-start lg:grid-cols-2 lg:gap-24">
           {/* Left content */}
-          <div className="relative">
+          <div className="relative text-center lg:text-left">
             {/* Badge */}
             <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/[0.06] px-4 py-1.5 text-sm backdrop-blur-sm animate-fade-in">
               <span className="relative flex h-2 w-2">
@@ -88,7 +88,7 @@ export function Hero() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.04em] leading-[0.95] animate-fade-in-up">
+            <h1 className="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-[-0.04em] leading-[0.95] animate-fade-in-up">
               <span className="text-foreground">Build.</span>
               <br />
               <span className="text-foreground/90">Connect.</span>
@@ -99,14 +99,14 @@ export function Hero() {
             </h1>
 
             {/* Description */}
-            <p className="mt-6 max-w-xl text-base sm:text-lg text-muted-foreground/80 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+            <p className="mt-6 max-w-xl text-base sm:text-lg text-muted-foreground/80 leading-relaxed animate-fade-in-up mx-auto lg:mx-0" style={{ animationDelay: "0.1s" }}>
               Speed, privacy, AI, and premium features — all in one platform.
               Built for communities, creators, and businesses who demand more
               from their communication.
             </p>
 
             {/* CTAs */}
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row justify-center lg:justify-start animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
               <Link href="/waitlist">
                 <Button variant="primary" size="xl" className="w-full sm:w-auto shine group">
                   <Sparkles className="h-5 w-5" />
@@ -122,7 +122,7 @@ export function Hero() {
             </div>
 
             {/* Feature highlights */}
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 animate-fade-in-up text-left" style={{ animationDelay: "0.3s" }}>
               {features.map((feature) => {
                 const Icon = feature.icon;
                 return (
@@ -141,41 +141,43 @@ export function Hero() {
           </div>
 
           {/* Right - Phone mockup */}
-          <div className="relative animate-fade-in" style={{ animationDelay: "0.4s" }}>
-            {/* Floating feature badges — wide orbit around screenshot */}
-            <div className="absolute -top-[46px] left-1/2 ml-[-18px] md:-top-[84px] md:ml-[-22px] lg:-top-[134px] lg:ml-[-32px] xl:-top-[180px] xl:ml-[-40px] z-10 flex animate-float-drift-1">
-              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/15 to-blue-600/5 backdrop-blur-xl shadow-xl shadow-blue-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/30 hover:from-blue-500/25 hover:to-blue-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                <Zap className="h-4 w-4 text-blue-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+          <div className="relative animate-fade-in overflow-hidden w-full max-w-[400px] lg:max-w-none lg:overflow-visible" style={{ animationDelay: "0.4s" }}>
+            {/* Floating feature badges — hidden on mobile to prevent overflow, visible on md+ */}
+            <div className="hidden md:block">
+              <div className="absolute -top-[84px] ml-[-22px] lg:-top-[134px] lg:ml-[-32px] xl:-top-[180px] xl:ml-[-40px] z-10 flex animate-float-drift-1">
+                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/15 to-blue-600/5 backdrop-blur-xl shadow-xl shadow-blue-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-blue-500/30 hover:from-blue-500/25 hover:to-blue-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                  <Zap className="h-5 w-5 text-blue-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+                </div>
               </div>
-            </div>
-            <div className="absolute top-[15%] left-1/2 ml-[-186px] md:ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-2">
-              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/15 to-emerald-600/5 backdrop-blur-xl shadow-xl shadow-emerald-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-emerald-500/30 hover:from-emerald-500/25 hover:to-emerald-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                <Shield className="h-4 w-4 text-emerald-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+              <div className="absolute top-[15%] ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-2">
+                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/15 to-emerald-600/5 backdrop-blur-xl shadow-xl shadow-emerald-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-emerald-500/30 hover:from-emerald-500/25 hover:to-emerald-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                  <Shield className="h-5 w-5 text-emerald-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+                </div>
               </div>
-            </div>
-            <div className="absolute top-[10%] left-1/2 ml-[150px] md:ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-3">
-              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/15 to-purple-600/5 backdrop-blur-xl shadow-xl shadow-purple-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/30 hover:from-purple-500/25 hover:to-purple-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                <Bot className="h-4 w-4 text-purple-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+              <div className="absolute top-[10%] ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-3">
+                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/15 to-purple-600/5 backdrop-blur-xl shadow-xl shadow-purple-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/30 hover:from-purple-500/25 hover:to-purple-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                  <Bot className="h-5 w-5 text-purple-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+                </div>
               </div>
-            </div>
-            <div className="absolute top-[45%] left-1/2 ml-[-186px] md:ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-1" style={{ animationDelay: "0.8s" }}>
-              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-pink-500/20 bg-gradient-to-br from-pink-500/15 to-pink-600/5 backdrop-blur-xl shadow-xl shadow-pink-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-pink-500/30 hover:from-pink-500/25 hover:to-pink-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                <Palette className="h-4 w-4 text-pink-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+              <div className="absolute top-[45%] ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-1" style={{ animationDelay: "0.8s" }}>
+                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-pink-500/20 bg-gradient-to-br from-pink-500/15 to-pink-600/5 backdrop-blur-xl shadow-xl shadow-pink-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-pink-500/30 hover:from-pink-500/25 hover:to-pink-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                  <Palette className="h-5 w-5 text-pink-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+                </div>
               </div>
-            </div>
-            <div className="absolute top-[50%] left-1/2 ml-[150px] md:ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-2" style={{ animationDelay: "1.2s" }}>
-              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/15 to-amber-600/5 backdrop-blur-xl shadow-xl shadow-amber-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-amber-500/30 hover:from-amber-500/25 hover:to-amber-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                <Gem className="h-4 w-4 text-amber-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+              <div className="absolute top-[50%] ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-2" style={{ animationDelay: "1.2s" }}>
+                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/15 to-amber-600/5 backdrop-blur-xl shadow-xl shadow-amber-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-amber-500/30 hover:from-amber-500/25 hover:to-amber-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                  <Gem className="h-5 w-5 text-amber-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+                </div>
               </div>
-            </div>
-            <div className="absolute top-[75%] left-1/2 ml-[-186px] md:ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-3" style={{ animationDelay: "1.6s" }}>
-              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/15 to-cyan-600/5 backdrop-blur-xl shadow-xl shadow-cyan-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/30 hover:from-cyan-500/25 hover:to-cyan-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                <Globe className="h-4 w-4 text-cyan-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+              <div className="absolute top-[75%] ml-[-244px] lg:ml-[-294px] xl:ml-[-340px] z-10 flex animate-float-drift-3" style={{ animationDelay: "1.6s" }}>
+                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/15 to-cyan-600/5 backdrop-blur-xl shadow-xl shadow-cyan-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/30 hover:from-cyan-500/25 hover:to-cyan-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                  <Globe className="h-5 w-5 text-cyan-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+                </div>
               </div>
-            </div>
-            <div className="absolute top-[80%] left-1/2 ml-[150px] md:ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-1" style={{ animationDelay: "2s" }}>
-              <div className="group flex h-9 w-9 items-center justify-center rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/15 to-indigo-600/5 backdrop-blur-xl shadow-xl shadow-indigo-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-indigo-500/30 hover:from-indigo-500/25 hover:to-indigo-600/10 md:h-11 md:w-11 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
-                <Rocket className="h-4 w-4 text-indigo-400 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+              <div className="absolute top-[80%] ml-[200px] lg:ml-[230px] xl:ml-[260px] z-10 flex animate-float-drift-1" style={{ animationDelay: "2s" }}>
+                <div className="group flex h-11 w-11 items-center justify-center rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-500/15 to-indigo-600/5 backdrop-blur-xl shadow-xl shadow-indigo-500/15 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-indigo-500/30 hover:from-indigo-500/25 hover:to-indigo-600/10 lg:h-16 lg:w-16 xl:h-20 xl:w-20">
+                  <Rocket className="h-5 w-5 text-indigo-400 lg:h-6 lg:w-6 xl:h-8 xl:w-8" />
+                </div>
               </div>
             </div>
 

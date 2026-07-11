@@ -1,24 +1,21 @@
+import { teamProfiles } from "@/config/team";
 import type { TeamMember } from "@/types/api";
 
-const members: TeamMember[] = [
-  {
-    id: "team-1",
-    name: "Savan Patel",
-    role: "Founder & Lead Developer",
-    bio: "Savan Patel founded SP NET INC with a vision to build technology that empowers people. He leads product strategy, architecture, and engineering for the SP NET GRAM ecosystem.",
+export function getTeamMembers(): Promise<TeamMember[]> {
+  const members: TeamMember[] = teamProfiles.map((profile) => ({
+    id: profile.id,
+    name: profile.name,
+    role: profile.role,
+    bio: profile.bio,
     avatarUrl: null,
-    socialLinks: JSON.stringify([
-      { platform: "linkedin", url: "https://linkedin.com/in/savanpatel" },
-      { platform: "github", url: "https://github.com/savanpatel" },
-      { platform: "email", url: "mailto:savan@spnetgram.com" },
-    ]),
+    socialLinks: JSON.stringify(
+      profile.socialLinks.map((l) => ({ platform: l.platform, url: l.url }))
+    ),
     displayOrder: 1,
     active: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-  },
-];
+  }));
 
-export function getTeamMembers(): Promise<TeamMember[]> {
   return Promise.resolve(members);
 }

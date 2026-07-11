@@ -44,11 +44,11 @@ function PremiumModal({
       <div className="fixed inset-0 bg-black/60 backdrop-blur-md" onClick={onClose} />
       <div className="relative z-10 w-full max-w-6xl">
         {/* Modal header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
+        <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4 mb-8">
+          <div className="text-center sm:text-left">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">Plans & Services</h2>
             <p className="mt-2 text-muted-foreground/60 text-sm">
-              Plans, pricing, and packages are managed in SP NET ADMIN.
+              Plans, pricing, and packages are managed in SP NET CONTROL CENTER.
             </p>
           </div>
           <button
@@ -169,7 +169,7 @@ function PremiumModal({
         </div>
 
         <p className="text-center text-xs text-muted-foreground/30 mt-10">
-          Pricing is managed entirely through SP NET ADMIN. Data is fetched live from the backend.
+          Pricing is managed entirely through SP NET CONTROL CENTER. Data is fetched live from the backend.
         </p>
       </div>
     </div>
@@ -199,7 +199,7 @@ export function PremiumSection() {
               </h2>
               <p className="mt-5 text-base sm:text-lg text-muted-foreground/60 leading-relaxed max-w-2xl mx-auto">
                 Premium plans, Gems packages, Coins bundles, licenses, and organization plans — all managed
-                through SP NET ADMIN.
+                through SP NET CONTROL CENTER.
               </p>
             </div>
           </ScrollReveal>
@@ -209,7 +209,7 @@ export function PremiumSection() {
             empty={
               <div className="text-center py-20">
                 <Database className="h-12 w-12 text-muted-foreground/20 mx-auto mb-4" />
-                <p className="text-sm text-muted-foreground/40">Plans are being configured in SP NET ADMIN.</p>
+                <p className="text-sm text-muted-foreground/40">Plans are being configured in SP NET CONTROL CENTER.</p>
               </div>
             }
           >
@@ -220,7 +220,7 @@ export function PremiumSection() {
                 return (
                   <div className="text-center py-20">
                     <Database className="h-12 w-12 text-muted-foreground/20 mx-auto mb-4" />
-                    <p className="text-sm text-muted-foreground/40">Plans are being configured in SP NET ADMIN.</p>
+                    <p className="text-sm text-muted-foreground/40">Plans are being configured in SP NET CONTROL CENTER.</p>
                   </div>
                 );
               }
@@ -228,7 +228,7 @@ export function PremiumSection() {
               return (
                 <>
                   {/* Quick overview cards */}
-                  <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-12">
+                  <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-12">
                     {activeCategories.slice(0, 4).map((cat, i) => {
                       const Icon = resolveCategoryIcon(cat.id);
                       return (
@@ -264,7 +264,7 @@ export function PremiumSection() {
                         <ArrowRight className="h-4 w-4" />
                       </Button>
                       <p className="mt-4 text-xs text-muted-foreground/30">
-                        Pricing is managed in SP NET ADMIN. Data is fetched live.
+                        Pricing is managed in SP NET CONTROL CENTER. Data is fetched live.
                       </p>
                     </div>
                   </ScrollReveal>

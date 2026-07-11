@@ -31,7 +31,7 @@ export const footerSections = [
     title: "Products",
     links: [
       { label: "SP NET GRAM", href: "#products" },
-      { label: "SP NET ADMIN", href: "#products" },
+      { label: "SP NET GRAM ADMIN OS", href: "#products" },
       { label: "SP NET AI", href: "#ai" },
       { label: "SP NET CLOUD", href: "#products" },
       { label: "SP NET API", href: "/docs" },

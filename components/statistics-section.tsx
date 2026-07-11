@@ -50,12 +50,12 @@ export function StatisticsSection() {
             </h2>
             <p className="mt-5 text-base sm:text-lg text-muted-foreground/60 leading-relaxed max-w-2xl mx-auto">
               Every metric represents real work — features shipped, systems built, and infrastructure hardened.
-              Live data from SP NET ADMIN powers these metrics.
+              Live data from SP NET CONTROL CENTER powers these metrics.
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {metrics.map((stat, i) => {
             const Icon = stat.icon;
             return (
@@ -80,7 +80,7 @@ export function StatisticsSection() {
             <div className="inline-flex items-center gap-2 rounded-xl border border-border/10 bg-card/10 px-5 py-3">
               <BarChart3 className="h-4 w-4 text-muted-foreground/30" />
               <span className="text-xs text-muted-foreground/30">
-                Metrics powered by SP NET ADMIN. Updates are reflected automatically.
+                Metrics powered by SP NET CONTROL CENTER. Updates are reflected automatically.
               </span>
             </div>
           </div>

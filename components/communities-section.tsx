@@ -56,7 +56,7 @@ export function CommunitiesSection() {
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {communityFeatures.map((item, i) => {
             const Icon = item.icon;
             return (

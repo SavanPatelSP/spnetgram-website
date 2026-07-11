@@ -30,7 +30,7 @@ export function CrossPlatformSection() {
           </div>
         </ScrollReveal>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {platforms.map((platform, i) => {
             const Icon = platform.icon;
             return (

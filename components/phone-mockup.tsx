@@ -61,7 +61,7 @@ function StatusBar() {
 
 export function PhoneMockup() {
   return (
-    <div className="relative mx-auto w-[280px] sm:w-[320px]">
+    <div className="relative mx-auto w-[260px] sm:w-[300px] md:w-[320px]">
       {/* Phone shadow/glow */}
       <div className="absolute -inset-2 rounded-[3rem] bg-gradient-to-b from-blue-500/20 via-purple-500/10 to-transparent opacity-60 blur-2xl" />
 
